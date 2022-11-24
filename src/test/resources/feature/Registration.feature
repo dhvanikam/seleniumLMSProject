@@ -42,17 +42,17 @@ Then Birth Date will be Displayed
 When Admin/User/Staff Clicks on "Sign Up" button after entering all valid details
 Then Admin/User/Staff registration should be successful
  
-Scenario: Invalid User Details
+Scenario: Invalid User Registration Details
 
 Given Admin/User/Staff is on the Registeration Page
 When Admin/User/Staff enters submit button with all fields empty
 Then Admin/User/Staff should get a message "Enters all fields"
 
 When Admin/User/Staff clicks Sign Up button with invalid First Name
-Then Admin/User/Staff should get a message"Enter valid First Name "
+Then Admin/User/Staff should get a message "Enter valid First Name !"
 
 When Admin/User/Staff clicks Sign Up button with invalid Last Name
-Then Admin/User/Staff should get a message"Enter valid Last Name"
+Then Admin/User/Staff should get a message "Enter valid Last Name"
 
 When Admin/User/Staff clicks Sign Up button with invalid Address by not Providing House Number 
 Then Admin/User/Staff should get a message "Enter valid Address"

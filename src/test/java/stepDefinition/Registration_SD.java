@@ -109,7 +109,7 @@ public void admin_user_staff_clicks_sign_up_button_with_invalid_first_name() {
 
 @Then("Admin\\/User\\/Staff should get a message\"Enter valid First Name \"")
 public void admin_user_staff_should_get_a_message_enter_valid_first_name() {
-	register.getErrorMsg();
+	register.getErrorMsg_firstname();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Last Name")
@@ -119,7 +119,7 @@ public void admin_user_staff_clicks_sign_up_button_with_invalid_last_name() {
 
 @Then("Admin\\/User\\/Staff should get a message\"Enter valid Last Name\"")
 public void admin_user_staff_should_get_a_message_enter_valid_last_name() {
-	register.getErrorMsg();
+	register.getErrorMsg_lastname();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Address by not Providing House Number")
@@ -129,7 +129,7 @@ public void admin_user_staff_clicks_sign_up_button_with_invalid_address_by_not_p
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Street Name")
 public void admin_user_staff_clicks_sign_up_button_with_invalid_street_name() {
-	register.getErrorMsg();
+	register.getErrorMsg_houseno();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Zip")
@@ -139,7 +139,7 @@ public void admin_user_staff_clicks_sign_up_button_with_invalid_zip() {
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid City")
 public void admin_user_staff_clicks_sign_up_button_with_invalid_city() {
-	register.getErrorMsg();
+	register.getErrorMsg_zip();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button without selecting State")
@@ -149,12 +149,13 @@ public void admin_user_staff_clicks_sign_up_button_without_selecting_state() {
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Phone Number")
 public void admin_user_staff_clicks_sign_up_button_with_invalid_phone_number() {
-	register.getErrorMsg();
+	register.getErrorMsg_state();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button without selecting BirthDate")
 public void admin_user_staff_clicks_sign_up_button_without_selecting_birth_date() {
 	 register.invalid_dob();
+	 register.getErrorMsg_dob();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Admin\\/User\\/Staff Name")
@@ -164,7 +165,7 @@ public void admin_user_staff_clicks_sign_up_button_with_invalid_admin_user_staff
 
 @Then("Admin\\/User\\/Staff should get a message\"Please Enter valid Admin\\/User\\/Staff Name \"")
 public void admin_user_staff_should_get_a_message_please_enter_valid_admin_user_staff_name() {
-	 register.getErrorMsg();
+	 register.getErrorMsg_username();
 }
 
 @When("Admin\\/User\\/Staff clicks Sign Up button with invalid Password")
