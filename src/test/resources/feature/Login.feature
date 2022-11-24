@@ -4,12 +4,13 @@ Feature: Login
 
 	Background: Admin/User/Staff opens the LMS website  
 
+	@onLMS
   Scenario: Validates the login url
     Given Admin/User/Staff is on Browser
     When Admin/User/Staff opens the LMS website  
     Then Admin/user/Staff should be navigated to login page
     
-  
+  @VAlid-login
   Scenario: Login-Valid Credentials
     Given Admin/User/Staff is on Login Page
     When User clicks login button after entering Username as "User" and Password as "User"  
@@ -19,7 +20,7 @@ Feature: Login
     When Staff clicks login button after entering Username as "Staff" and Password as "Staff" and code as "54321"  
     Then Staff see header text as "Manage Program" 
     
-    
+  @Invalid-user  
   Scenario Outline: Login -Invalid Credentials for user
     Given User is on Login Page
     When User clicks login button after entering "<Username>" and "<Password>"
@@ -32,7 +33,7 @@ Feature: Login
     |Userr||Userr||Invalid Username and Password|
     |Username|| ||enter valid password|
     
-    
+  @invalid-admin 
   Scenario Outline: Login -Invalid Credentials for Admin
 	  Given Admin is on Login Page
 	  When Admin clicks login button after entering  "valid username" "invalid Password" and "code" 
@@ -43,8 +44,9 @@ Feature: Login
     |Admin||Adminn||12345||Invalid password|
     |Adminn||Admin||12345||Invalid username|
     |Admin||Admin||12555||Invalid code|
-    
-  Scenario Outline: Login -Invalid Credentials for Admin
+   
+  @invalid-staff 
+  Scenario Outline: Login -Invalid Credentials for Staff
 	  Given Staff is on Login Page
 	  When Staff clicks login button after entering  "valid username" "invalid Password" and "code" 
     Then Staff should see a error message "<Errormessage>"
