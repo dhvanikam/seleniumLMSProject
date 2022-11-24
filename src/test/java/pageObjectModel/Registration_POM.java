@@ -7,8 +7,10 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v106.systeminfo.SystemInfo.GetInfoResponse;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import io.cucumber.datatable.DataTable;
 import stepDefinition.DriverManager;
@@ -33,6 +35,7 @@ public class Registration_POM {
 	@FindBy (id="username")WebElement username;
 	@FindBy (id="password")WebElement password;
 	@FindBy (id="email")WebElement email;
+	@FindBy (id="Success") WebElement display;
 	
 	public void registrationPage() {
 		Loggerload.info("User click on Resgistration link");
@@ -63,12 +66,13 @@ public class Registration_POM {
 	public void loginpage() {
         Loggerload.info("Login page displays");
 		Loggerload.info(driver.getCurrentUrl());
+		Assert.assertEquals(driver.getTitle(), "log in page", "Login page displays ");
 		
 	}
 
 	public void selectstate() {
 		
-		Loggerload.info("Select state from Drop box");
+		Loggerload.info("Select first state from Drop box");
 
 		Select s=new Select(state);
 		s.getFirstSelectedOption();
@@ -80,7 +84,7 @@ public class Registration_POM {
 	}
 
 	public void selectdob() {
-		Loggerload.info("Select DOB from Drop box");
+		Loggerload.info("Select first DOB from Drop box");
 		Select d=new Select(dob);
 	    d.getFirstSelectedOption();
 		
@@ -100,11 +104,13 @@ public class Registration_POM {
 	public void displaySuccess() {
 		
 		Loggerload.info("Successfully Registered");
+		String text=display.getText();
+		Assert.assertEquals(text,"Registered Successfully");
 	}
 
 	public void error(String errormsg) {
 		 
-		 Loggerload.error(errormsg);
+		 Loggerload.error(errormsg);//assert
 	}
 
 	public void entervalidData(DataTable dataTable) {
@@ -142,15 +148,19 @@ public class Registration_POM {
 		firstname.sendKeys("123Alpaha");
 	}
 
-	public void getErrorMsg() {
+	public void getErrorMsg_firstname() {
 		
-		Loggerload.error("Invalid input");
+		Loggerload.error("Enter valid Firstname");
 	}
-
-	public void existing_username() {
+	
+	public void invalid_lastname() {
+		Loggerload.info("user enter invalid lastname :");
+		lastname.sendKeys("2324");
 		
-		Loggerload.warn("username Already Exists:");
-		username.sendKeys("numpy");
+	}
+    public void getErrorMsg_lastname() {
+		
+		Loggerload.error("Enter valid lastname");
 	}
 
 	public void invalid_pwd() {
@@ -158,22 +168,40 @@ public class Registration_POM {
 		Loggerload.info("user enter invalid password");
 		 password.sendKeys("%&#$@");	
 	}
+     public void getErrorMsg_password() {
+		
+		Loggerload.error("Enter valid password");
+	}
 
 	public void invalid_username() {
 		Loggerload.info("user enter invalid username :");
 		username.sendKeys("24dgsdg2422@2");
 		
 	}
-
+    public void getErrorMsg_username() {
+		
+		Loggerload.error("Enter valid username");
+	}
+    
 	public void invalid_dob() {
 		Loggerload.info("user enter invalid dob :");
 		dob.clear();
 		
 	}
+	
+    public void getErrorMsg_dob() {
+		
+		Loggerload.error("Birthdate is required");
+	}
 
 	public void invalid_houseno() {
 		Loggerload.info("user enter invalid houseno :");
 		address.sendKeys("");
+	}
+	
+   public void getErrorMsg_houseno() {
+		
+		Loggerload.error("Enter valid house number");
 	}
 
 	public void invalid_zip() {
@@ -181,16 +209,27 @@ public class Registration_POM {
 		zip.sendKeys("sfad");
 	}
 
+    public void getErrorMsg_zip() {
+		
+		Loggerload.error("Enter valid Zip");
+	}
+    
 	public void invalid_state() {
 		Loggerload.info("user enter invalid state :");
 		state.sendKeys("");
 	}
-
-	public void invalid_lastname() {
-		Loggerload.info("user enter invalid lastname :");
-		lastname.sendKeys("2324");
+   public void getErrorMsg_state() {
 		
+		Loggerload.error("State name is required");
 	}
+
+   public void existing_username() {
+		
+		Loggerload.warn("username Already Exists:");
+		username.sendKeys("numpy");
+	}
+
+  
 }
 	
 	
