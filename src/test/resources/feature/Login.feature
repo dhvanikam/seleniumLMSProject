@@ -56,6 +56,73 @@ Feature: Login
     |Staff||Staffs||54321||Invalid password|
     |Staffa||Staff||54321||Invalid username|
     |Staff||Staff||54222||Invalid code|
+  
+      
+    @forgot-password
+    Scenario: Forgot Password
+    Given Admin/User/Staff is on Login Page
+	  When Admin/User/Staff clicks Forgot password link
+	  Then It should redirected to forgot Password page
+	  
+	  Given Admin/User/Staff is on Forgot Password Page
+	  When Admin/User/Staff clicks continue after entering valid email address 
+	  Then It should be redirected to enter verification code page
+	  
+	  Given Admin/User/Staff is on Enter verification code Page 
+	  When Admin/User/Staff clicks continue after entering verification code 
+	  Then It should be redirected reset password page 
+	  
+	  Given Admin/User/Staff is on Enter verification code Page
+	  When Admin/User/Staff should be redirected reset password page
+	  Then The verification code should be resend to email  
+	  
+	  @validreset-password
+	  Scenario:  Valid Reset Password
+	  Given Admin/User/Staff is on Reset Password Page
+	  When Admin/User/Staff clicks submit button after entering new password and retype password 
+	  Then Admin/User/Staff  should be redirected to login page
+	   
+	  
+	  @invalidreset-password
+	  Scenario: Invalid reset Password
+	  Given Admin/User/Staff is on Reset Password Page
+	  When Admin/User/Staff clicks submit button after entering password  with less than 8 characters
+	  Then It should display an error message "The password must contain 8 characters"
+	  Given Admin/User/Staff clicks submit button after entering password without Capital letter 
+	  Then It should display an error message "The password must contain one Capital letter"
+	  When Admin/User/Staff clicks submit button after entering  password without Number
+	  Then It should display an error message "The password must contain one Number"
+	  When Admin/User/Staff clicks submit button after entering password without Special character
+	  Then It should display an error message "The password must contain one Special character"
+	  When Admin/User/Staff clicks cancel button after entering new password and retype password 
+	  Then Admin/User/Staff  should see a refreshed reset password page with empty fields
+	  
+	  
+
+
+
+
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    
     
     
     

@@ -7,3 +7,4 @@ Feature: LogOut button
     When Admin/User/Staff  Clicks on LogOut button
     Then Admin/User/Staff should be navigated to Login Screen
     
+    
