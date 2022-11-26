@@ -56,44 +56,69 @@ Feature: Login
     |Staff||Staffs||54321||Invalid password|
     |Staffa||Staff||54321||Invalid username|
     |Staff||Staff||54222||Invalid code|
-  
-      
-    @forgot-password
-    Scenario: Forgot Password
+     
+    @Validate-forgot-passwordlink
+    Scenario: Validate forgot password link
     Given Admin/User/Staff is on Login Page
-	  When Admin/User/Staff clicks Forgot password link
+	  When Admin/User/Staff clicks Forgot password "link"
 	  Then It should redirected to forgot Password page
 	  
+	  @Validate-forgotpassword-with-email id
+	  Scenario Outline: Validate forgot password with  email id
 	  Given Admin/User/Staff is on Forgot Password Page
-	  When Admin/User/Staff clicks continue after entering valid email address 
+	  When Admin/User/Staff clicks continue after entering "<valid email address>"
 	  Then It should be redirected to enter verification code page
 	  
+	  Examples:
+	  |valid email address|
+	  |Admin|
+	  |User|
+	  |Staff|
+	  
+	  @Validate-verifiction-code
+	  Scenario: Validate verifiction code
 	  Given Admin/User/Staff is on Enter verification code Page 
 	  When Admin/User/Staff clicks continue after entering verification code 
 	  Then It should be redirected reset password page 
 	  
+	  @Validate-clickhere-link-in-verificationcode-page
+	  Scenario: Validate click here link in verification code page
 	  Given Admin/User/Staff is on Enter verification code Page
 	  When Admin/User/Staff should be redirected reset password page
 	  Then The verification code should be resend to email  
 	  
 	  @validreset-password
-	  Scenario:  Valid Reset Password
+	  Scenario Outline:  Valid Reset Password
 	  Given Admin/User/Staff is on Reset Password Page
-	  When Admin/User/Staff clicks submit button after entering new password and retype password 
+	  When Admin/User/Staff clicks submit button after entering "<new password>" and "<retype password>" 
 	  Then Admin/User/Staff  should be redirected to login page
-	   
 	  
+	  Examples:
+	  |new password||retype password|
+	  |NewAdmin@12||NewAdmin@12|
+	  |NewUser@12||NewUser@12|
+	  |NewStaff@12||NewStaff@12|
+	   	  
 	  @invalidreset-password
-	  Scenario: Invalid reset Password
+	  Scenario: Validate Reset password with lessthan 8 characters
 	  Given Admin/User/Staff is on Reset Password Page
 	  When Admin/User/Staff clicks submit button after entering password  with less than 8 characters
 	  Then It should display an error message "The password must contain 8 characters"
-	  Given Admin/User/Staff clicks submit button after entering password without Capital letter 
+	 
+	  Scenario: Validate Reset password without capital letter
+	  Given Admin/User/Staff is on Reset Password Page
+	  When Admin/User/Staff clicks submit button after entering password without Capital letter 
 	  Then It should display an error message "The password must contain one Capital letter"
+	 
+	  Scenario: Validate Reset password without number
 	  When Admin/User/Staff clicks submit button after entering  password without Number
 	  Then It should display an error message "The password must contain one Number"
+	 
+	  Scenario: Validate Reset password without special character
 	  When Admin/User/Staff clicks submit button after entering password without Special character
 	  Then It should display an error message "The password must contain one Special character"
+	 
+	  Scenario: Validate Reset password with cancel button
 	  When Admin/User/Staff clicks cancel button after entering new password and retype password 
 	  Then Admin/User/Staff  should see a refreshed reset password page with empty fields
 	  
