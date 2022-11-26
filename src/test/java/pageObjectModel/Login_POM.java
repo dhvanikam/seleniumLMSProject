@@ -32,9 +32,7 @@ public class Login_POM {
 	@FindBy (id="newpwsd") WebElement newpassword;
 	@FindBy (id="retypepwsd") WebElement retypepassword;
 	@FindBy (id="SubmitButton") WebElement SubmitButton;
-
-
-
+	@FindBy (id="cancelButton") WebElement cancelButton;
 
 
 	public void openCromeBrowser() {
@@ -140,6 +138,8 @@ public class Login_POM {
 	public void continuFromVerification() {
 		
 		Continue.click();
+		Loggerload.info("After entering verification code Continue button clicked");
+
 	}
 
 	public void resetPasswordPage() {
@@ -151,15 +151,29 @@ public class Login_POM {
 
 	public void setNewPassword(String newpswd,String retypepswd) {
 		
+		newpassword.clear();
+		retypepassword.clear();
 		newpassword.sendKeys(newpswd);
 		retypepassword.sendKeys(retypepswd);
+		Loggerload.info("NewPassword and Retype Password entered");
 	}
 
 	public void clickSubmitButton() {
 		
+			
 		SubmitButton.click();
+		Loggerload.info("NewPassword and Retype Password entered and Submit button clicked");
+	}
+	
+	public void clickCancelButton() {
+		
+		cancelButton.click();
+		Loggerload.info("NewPassword and Retype Password entered and Cancel button clicked");
 	}
 
+	
+
+	
 	
 	
 

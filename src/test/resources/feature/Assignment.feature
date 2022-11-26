@@ -109,7 +109,8 @@
 	 
 	 
 	 Scenario: Checking who has access to Manage Assignment Page
-	 When Admin/User is on Manage Assignment page
+	 Given Admin/User is on Manage Assignment page
+	 When Admin/User Click on add New Assignment
 	 Then Admin/User should see a message "Staff only have access to add New Assignment"
 	
 	 Scenario: No details Entered in  Assignment Details window 
@@ -154,14 +155,17 @@
  	 Then Staff should see a message "Assignment Description Updated"
  	
    Scenario: Staff Edit Assignment Grade in Assignment Details window
+   Given Staff is on Assignment Details window
  	 When Staff clicks Save button after edits Assignment Grade
  	 Then Staff should see a message "Assignment Grade Updated"
  	 
  	 Scenario: Staff Edit Assignment DueDate in Assignment Details window
+ 	 Given Staff is on Assignment Details window
  	 When Staff clicks Save button after edits Assignment DueDate
  	 Then Staff should see a message "Assignment Due Date Updated"
  	 
  	 Scenario: Staff Click Cancel in  Assignment Details window
+ 	 Given Staff is on Assignment Details window
  	 When Staff clicks cancel button 
  	 Then Staff Should see a Assignment Details Page is closed
  
@@ -182,23 +186,23 @@
    Then User/Staff should be navigated to Assignment Google form page
    
    Scenario: User/Staff validate assignment Google form with entering all fields
-   Given: User/Staff is on Assignment  Google form page
+   Given User/Staff is on Assignment  Google form page
    When User/Staff clicks on submit button after entering all questions and mail id 
    Then User/Staff entered google forms successfully
    
    Scenario: User/Staff validate assignment Google form leaving empty
-   Given: User/Staff is on Assignment  Google form page
+   Given User/Staff is on Assignment  Google form page
    When User/Staff clicks on submit button after leaving all questions and mail id 
    Then User/Staff should get a warning message "Must enter the mandatory fields"
   
   
    Scenario: User/Staff Validate Assignment google form after cliclking clear button
-   Given: User/Staff is on Assignment  Google form page
+   Given User/Staff is on Assignment  Google form page
    When User clicks clear form button after entering all questions and mail id 
    Then The Assignment Google form cleared successfully
   
    Scenario: User/Staff clicks Switch account
-   Given: User/Staff is on Assignment  Google form page
+   Given User/Staff is on Assignment  Google form page
    When User clicks Switch account link 
    Then User should be switched over the account Successfully
       

@@ -1,17 +1,17 @@
-package stepDefinition;
-
-import java.util.List;
-import java.util.Map;
-
-import org.openqa.selenium.WebDriver;
-
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import pageObjectModel.Registration_POM;
-
-public class Registration_SD 
-{
+//package stepDefinition;
+//
+//import java.util.List;
+//import java.util.Map;
+//
+//import org.openqa.selenium.WebDriver;
+//
+//import io.cucumber.java.en.Given;
+//import io.cucumber.java.en.Then;
+//import io.cucumber.java.en.When;
+//import pageObjectModel.Registration_POM;
+//
+//public class Registration_SD 
+//{
 //	public static WebDriver driver=DriverManager.initializeDriver();
 //	Registration_POM register=new Registration_POM();
 //	
@@ -182,4 +182,4 @@ public class Registration_SD
 //public void admin_user_staff_should_see_the_message(String string) {
 //	register.error(string);
 //}
-}
+//}

@@ -63,7 +63,7 @@ Feature: Login
 	  When Admin/User/Staff clicks Forgot password "link"
 	  Then It should redirected to forgot Password page
 	  
-	  @Validate-forgotpassword-with-email id
+	  @Validate-forgotpassword-with-emailid
 	  Scenario Outline: Validate forgot password with  email id
 	  Given Admin/User/Staff is on Forgot Password Page
 	  When Admin/User/Staff clicks continue after entering "<valid email address>"
@@ -102,7 +102,7 @@ Feature: Login
 	  @invalidreset-password
 	  Scenario: Validate Reset password with lessthan 8 characters
 	  Given Admin/User/Staff is on Reset Password Page
-	  When Admin/User/Staff clicks submit button after entering password  with less than 8 characters
+	  When Admin/User/Staff clicks submit button after entering password  with less than eight characters
 	  Then It should display an error message "The password must contain 8 characters"
 	 
 	  Scenario: Validate Reset password without capital letter
