@@ -11,12 +11,14 @@ import org.testng.Assert;
 
 import stepDefinition.DriverManager;
 import utilities.Loggerload;
+import utilities.PaginationUtility;
 
 
 public class Login_POM {
 	
 	Logger logger =  LogManager.getLogger();
 	public static WebDriver driver = DriverManager.getChromedriver();
+	PaginationUtility pu = new PaginationUtility();
 	
 	@FindBy (id="LoginButton") WebElement loginButton;
 	@FindBy (id="uname") WebElement uname;
@@ -65,17 +67,17 @@ public class Login_POM {
 		logger.info("User Enters Password for Login");
 	}
 
-	public void clickLoginButton() {
+	public void clickLoginButton() throws Exception {
 		
-		loginButton.click();
+		pu.clickElement(loginButton);
 		logger.info("User Press Login Button");
 	}
 
 	public void headerText(String htext) {
 		
-	    headertext.getText();
-		assertEquals(headertext,"Manage Program", "InvalidPage"); 
-		Loggerload.info("Get the title of the page : " + headertext);
+		String s = pu.getElementText(headertext);
+	    assertEquals(s,"Manage Program", "InvalidPage"); 
+		Loggerload.info("Get the title of the page : " + s);
 	}
 
 	public void loginAsAdmin(String aname) {
@@ -121,32 +123,31 @@ public class Login_POM {
 	}
 
 
-	public void clickForgotPasswordLink(String email) {
+	public void clickForgotPasswordLink(String email) throws Exception {
 
 		emailBox.sendKeys(email);
-		forgotPasswordLink.click();
+		pu.clickElement(forgotPasswordLink);
 		logger.info("Admin/Staff/User click on Forgot Password Link afetr entering Email");
 	}
 	
 	public void veryFicationCodePage() {
 
-		veriFicationCodePage.getText();
-		assertEquals(veriFicationCodePage,"Enter verification code below:", "InvalidPage"); 
-		Loggerload.info("Get the title of the page : " + veriFicationCodePage);
+		String s = pu.getElementText(veriFicationCodePage);
+		assertEquals(s,"Enter verification code below:", "InvalidPage"); 
+		Loggerload.info("Get the title of the page : " + s);
 	}
 
-	public void continuFromVerification() {
+	public void continuFromVerification() throws Exception {
 		
-		Continue.click();
+		pu.clickElement(Continue);
 		Loggerload.info("After entering verification code Continue button clicked");
-
 	}
 
 	public void resetPasswordPage() {
 		
-		resetPasswordPage.getText();
-		assertEquals(resetPasswordPage,"Type in new Password", "InvalidPage"); 
-		Loggerload.info("Get the title of the page : " + resetPasswordPage);
+		String s = pu.getElementText(resetPasswordPage);
+		assertEquals(s,"Type in new Password", "InvalidPage"); 
+		Loggerload.info("Get the title of the page : " + s);
 	}
 
 	public void setNewPassword(String newpswd,String retypepswd) {
@@ -158,16 +159,16 @@ public class Login_POM {
 		Loggerload.info("NewPassword and Retype Password entered");
 	}
 
-	public void clickSubmitButton() {
+	public void clickSubmitButton() throws Exception {
 		
-			
-		SubmitButton.click();
+		pu.clickElement(SubmitButton);
 		Loggerload.info("NewPassword and Retype Password entered and Submit button clicked");
 	}
 	
-	public void clickCancelButton() {
+	public void clickCancelButton() throws Exception {
 		
-		cancelButton.click();
+		pu.clickElement(cancelButton);
+		
 		Loggerload.info("NewPassword and Retype Password entered and Cancel button clicked");
 	}
 

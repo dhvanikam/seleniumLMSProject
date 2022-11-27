@@ -50,7 +50,7 @@
  @searchtextbox
  Scenario: Validate Search Feature
  	Given Admin/User/Staff is on Assignment Page
- 	When Admin/User/Staff clicks Search bar after entering Assignment name
+ 	When Admin/User/Staff clicks Search bar after entering "Assignment name"
  	Then The requested assignment details should be displayed
  	
  @nameinAscending	
@@ -180,29 +180,29 @@
    When Admin clicks on Assignment Name
    Then Admin should see a warning message "you dont have access"
    
-   Scenario: User/Staff clicks Assignment Name
-   Given User/Staff is on Assignment page
-   When User/Staff clicks on Assignment Name
-   Then User/Staff should be navigated to Assignment Google form page
+   Scenario: User clicks Assignment Name
+   Given User is on Assignment page
+   When User clicks on Assignment Name
+   Then User should be navigated to Assignment Google form page
    
-   Scenario: User/Staff validate assignment Google form with entering all fields
-   Given User/Staff is on Assignment  Google form page
-   When User/Staff clicks on submit button after entering all questions and mail id 
-   Then User/Staff entered google forms successfully
+   Scenario: User validate assignment Google form with entering all fields
+   Given User is on Assignment  Google form page
+   When User clicks on submit button after entering all questions and mail id 
+   Then User entered google forms successfully
    
-   Scenario: User/Staff validate assignment Google form leaving empty
-   Given User/Staff is on Assignment  Google form page
-   When User/Staff clicks on submit button after leaving all questions and mail id 
-   Then User/Staff should get a warning message "Must enter the mandatory fields"
+   Scenario: User validate assignment Google form leaving empty
+   Given User is on Assignment  Google form page
+   When User clicks on submit button after leaving all questions and mail id 
+   Then User should get a warning message "Must enter the mandatory fields"
   
   
-   Scenario: User/Staff Validate Assignment google form after cliclking clear button
-   Given User/Staff is on Assignment  Google form page
+   Scenario: User Validate Assignment google form after cliclking clear button
+   Given User is on Assignment  Google form page
    When User clicks clear form button after entering all questions and mail id 
    Then The Assignment Google form cleared successfully
   
-   Scenario: User/Staff clicks Switch account
-   Given User/Staff is on Assignment  Google form page
+   Scenario: User clicks Switch account
+   Given User is on Assignment  Google form page
    When User clicks Switch account link 
    Then User should be switched over the account Successfully
       
