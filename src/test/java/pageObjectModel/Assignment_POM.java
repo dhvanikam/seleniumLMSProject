@@ -2,8 +2,8 @@ package pageObjectModel;
 
 import static org.testng.Assert.assertEquals;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,14 +15,15 @@ import stepDefinition.DriverManager;
 import utilities.Loggerload;
 
 import utilities.PaginationUtility;
+import utilities.SearchUtility;
 
 public class Assignment_POM {
 	
-	Logger logger =  LogManager.getLogger();
 	public static WebDriver driver = DriverManager.getChromedriver();
 	
 	Actions action = new Actions(driver);
 	PaginationUtility pu = new PaginationUtility();
+	SearchUtility su = new SearchUtility();
 	
 	@FindBy (id="mngassg") WebElement manageAssignment;
 	@FindBy (id="footermsg") WebElement footerText;
@@ -33,23 +34,28 @@ public class Assignment_POM {
 	@FindBy (id="last") WebElement lastArrow;
 	@FindBy (id="search") WebElement searchBox;
 	@FindBy (id="asdetail") WebElement assignmentDetail;
+	@FindBy (id="addnew") WebElement addNewAssignmentButton;
+	@FindBy (id="asssignmentName") List<WebElement> assignmentNames;
+	@FindBy (id="") WebElement assignmentNamefromDetailPage;
+	@FindBy (id="") WebElement assignmentDescriptionfromDetailPage;
+	@FindBy (id="") WebElement assignmentGradefromDetailPage;
+	@FindBy (id="") WebElement assignmentDueDatefromDetailPage;
+	@FindBy (id="") WebElement saveButtonfromDetailPage;
+	@FindBy (id="") WebElement cancelButtonfromDetailPage;
 
 
 
-
-	
-	
 	public void openWebsite() {
 		
 		driver.get("https://LMS.com");
 		driver.manage().window().maximize();
-		logger.info("User opens the LMS website");
+		Loggerload.info("User opens the LMS website");
 	}
 
-	public void assignmentPage() {
+	public void manageAssignmentPage() {
 		
 		Assert.assertTrue(manageAssignment.isDisplayed());
-		logger.info("User is on Manage Assignment Page");
+		Loggerload.info("User is on Manage Assignment Page");
 	}
 	
 	public void headerText(String htext) {
@@ -103,12 +109,62 @@ public class Assignment_POM {
 
 	}
 	
+	public void searchAssignmentDetail() throws Exception {
+		
+		String searchtext = pu.getElementText(searchBox);
+		su.verifySearch(assignmentNames,searchtext);
+		Loggerload.info("Searched Assignment will be Display in list");
+	}
+	
 	public void assignmentDetailPage() {
 	
 		String s =	pu.getElementText(assignmentDetail);
 			assertEquals(s,"Assignment Details", "InvalidPage"); 
 			Loggerload.info("Get the title of the page : " + s);
 	}
+
+	public void addNewAssignmentButton() throws Exception {
+		
+		pu.clickElement(addNewAssignmentButton);
+	}
+
+	public void isPageContainsText(String text) {
+		
+		Assert.assertTrue (driver.getPageSource().contains(text));
+		Loggerload.info("Error Message : " + text);
+	}
 	
+	public void allFieldsEmpty()  {
+		
+		String name = assignmentNamefromDetailPage.getText();
+		String desc = assignmentDescriptionfromDetailPage.getText();
+		String grade = assignmentGradefromDetailPage.getText();
+		String date = assignmentDueDatefromDetailPage.getText();
+		
+		if(name.isEmpty()&& desc.isEmpty() && grade.isEmpty() && date.isEmpty())
+			Loggerload.info("Error Message display : Name is required ");
+	
+	}
+
+	public void addAllFields() {
+		
+		assignmentNamefromDetailPage.sendKeys("TestNG Assignment");
+		assignmentDescriptionfromDetailPage.sendKeys("Complete All the Assignments");
+		assignmentGradefromDetailPage.sendKeys("A");
+		assignmentDueDatefromDetailPage.sendKeys("12-31-2022");
+	}
+	
+	public void clickSaveButton() throws Exception {
+		
+		pu.clickElement(saveButtonfromDetailPage);
+		Loggerload.info("Staff filled all the details and press save button for new Assignment ");
+	}
+
+	public void clickCancelButton() throws Exception {
+
+		pu.clickElement(cancelButtonfromDetailPage);
+		Loggerload.info("Staff filled all the details and press cancel button for new Assignment ");
+				
+	}
 	 
 }

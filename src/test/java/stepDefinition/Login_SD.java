@@ -1,7 +1,5 @@
 package stepDefinition;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,7 +8,6 @@ import pageObjectModel.Login_POM;
 
 public class Login_SD {
 	
-	Logger logger =  LogManager.getLogger();
 	Login_POM lp = new Login_POM();
 	
 
@@ -234,7 +231,7 @@ public void admin_user_staff_should_be_redirected_to_login_page() {
 @When("Admin\\/User\\/Staff clicks submit button after entering password  with less than eight characters")
 public void admin_user_staff_clicks_submit_button_after_entering_password_with_less_than_eight_characters() {
    
-	lp.setUsername("User@12");
+	lp.setNewPassword("abcd12", "abcd12");
 }
 
 
@@ -248,20 +245,20 @@ public void it_should_display_an_error_message(String errormsg) {
 @When("Admin\\/User\\/Staff clicks submit button after entering password without Capital letter")
 public void admin_user_staff_clicks_submit_button_after_entering_password_without_capital_letter() {
    
-	lp.setUsername("user@123");
-	
+	lp.setNewPassword("selenium12", "selenium12");	
 }
 
 @When("Admin\\/User\\/Staff clicks submit button after entering  password without Number")
 public void admin_user_staff_clicks_submit_button_after_entering_password_without_number() {
 
-	lp.setUsername("user@abc");
+	lp.setNewPassword("selenium", "selenium");	
+
 }
 
 @When("Admin\\/User\\/Staff clicks submit button after entering password without Special character")
 public void admin_user_staff_clicks_submit_button_after_entering_password_without_special_character() {
 
-	lp.setUsername("user1abc");
+	lp.setNewPassword("selenium12", "selenium12");	
 
 }
 
