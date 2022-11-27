@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v106.systeminfo.SystemInfo.GetInfoResponse;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -20,6 +19,7 @@ public class Registration_POM {
 	
 	public static WebDriver driver=DriverManager.getChromedriver();
 	
+	@FindBy (id="register")WebElement register;
 	@FindBy (id="Header")WebElement header;
 	@FindBy (id="login")WebElement login;
 	@FindBy (id="signup")WebElement signup;
@@ -39,7 +39,7 @@ public class Registration_POM {
 	
 	public void registrationPage() {
 		Loggerload.info("User click on Resgistration link");
-		header.click();
+		register.click();
 		
 	}
 

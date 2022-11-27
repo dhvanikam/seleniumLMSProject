@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WrapsElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -18,7 +19,9 @@ public class Login_POM {
 	
 	Logger logger =  LogManager.getLogger();
 	public static WebDriver driver = DriverManager.getChromedriver();
+
 	PaginationUtility pu = new PaginationUtility();
+
 	
 	@FindBy (id="LoginButton") WebElement loginButton;
 	@FindBy (id="uname") WebElement uname;
@@ -28,6 +31,7 @@ public class Login_POM {
 	@FindBy (id="forgotPassword") WebElement forgotPasswordLink;
 	@FindBy (id="email") WebElement emailBox;
 	@FindBy (id="forgotPasswordWindow") WebElement forgotPasswordWindow;
+	@FindBy (id="forgotPasswordcode") WebElement forgotpasswordcode;
 	@FindBy (id="verificationcode") WebElement veriFicationCodePage;
 	@FindBy (id="continue") WebElement Continue;
 	@FindBy (id="resetPasswordPage") WebElement resetPasswordPage;
@@ -36,11 +40,6 @@ public class Login_POM {
 	@FindBy (id="SubmitButton") WebElement SubmitButton;
 	@FindBy (id="cancelButton") WebElement cancelButton;
 
-
-	public void openCromeBrowser() {
-	
-	
-	}
 
 	public void openWebsite() {
 		
@@ -57,14 +56,24 @@ public class Login_POM {
 
 	public void setUsername(String uname2) {
 		
+		logger.info("User Enters "+ uname2+"  for username");
 		uname.sendKeys(uname2);
-		logger.info("User Enters User  for Login");
+		if(uname2.equalsIgnoreCase("User")) 
+			logger.info("Valid username");
+		else 
+		   	logger.info("Invalid username");
 	}
 
 	public void setPassword(String pswd2) {
 		
+		logger.info("User Enters password");
 		pswd.sendKeys(pswd2);
-		logger.info("User Enters Password for Login");
+		if(pswd2.equals("User")) 
+			logger.info("Valid Password");
+		
+		else 
+		  	logger.info("Invalid password");
+		
 	}
 
 	public void clickLoginButton() throws Exception {
@@ -74,46 +83,68 @@ public class Login_POM {
 	}
 
 	public void headerText(String htext) {
-		
+
 		String s = pu.getElementText(headertext);
-	    assertEquals(s,"Manage Program", "InvalidPage"); 
+	    assertEquals(s, htext, "InvalidPagee"); 
 		Loggerload.info("Get the title of the page : " + s);
 	}
 
 	public void loginAsAdmin(String aname) {
-		
-		uname.sendKeys(aname);
 		logger.info("Admin Enters User Name for Login");
+		uname.sendKeys(aname);
+		if(aname.equalsIgnoreCase("Admin")) 
+			logger.info("Valid username");
+		else 
+		   	logger.info("Invalid username");
 	}
 
 	public void passwordAsAdmin(String apswd) {
-
-		pswd.sendKeys(apswd);
 		logger.info("Admin Enters Password for Login");
+		pswd.sendKeys(apswd);
+		if(apswd.equals("Admin")) 
+			logger.info("Valid Password");
+		else 
+		  	logger.info("Invalid password");
 	}
 
 	public void codeAsAdmin(String acode) {
-		
-		code.sendKeys(acode);
 		logger.info("Admin Enters code for Login");
+		code.sendKeys(acode);
+		if(acode.equals("12345")) 
+			logger.info("Valid Code");
+		else 
+		  	logger.info("Invalid Code");
 	}
 
 	public void loginAsStaff(String sname) {
-	
-		uname.sendKeys(sname);
 		logger.info("Staff Enters User Name for Login");
+		uname.sendKeys(sname);
+		if(sname.equalsIgnoreCase("Staff")) 
+			logger.info("Valid username");
+		else 
+		   	logger.info("Invalid username");
+		
 	}
 
 	public void passwordAsStaff(String spswd) {
-
-		pswd.sendKeys(spswd);
 		logger.info("Staff Enters Password for Login");
+		pswd.sendKeys(spswd);
+		if(spswd.equals("Staff")) 
+			logger.info("Valid Password");
+		
+		else 
+		  	logger.info("Invalid password");
 	}
 
 	public void codeAsStaff(String scode) {
-		
-		code.sendKeys(scode);
+
 		logger.info("Staff Enters code for Login");
+		code.sendKeys(scode);
+	   if(scode.equals("54321")) 
+			logger.info("Valid Code");
+		
+		else 
+		  	logger.info("Invalid Code");
 	}
 
 	public void isPageContainsText(String text) {
@@ -121,7 +152,6 @@ public class Login_POM {
 		Assert.assertTrue (driver.getPageSource().contains(text));
 		logger.info("Error Message : " + text);
 	}
-
 
 	public void clickForgotPasswordLink(String email) throws Exception {
 
@@ -138,16 +168,30 @@ public class Login_POM {
 	}
 
 	public void continuFromVerification() throws Exception {
-		
+		forgotpasswordcode.sendKeys("12345");
 		pu.clickElement(Continue);
 		Loggerload.info("After entering verification code Continue button clicked");
 	}
+	
+    public void forgotPasswordpage() {
+		
+		Loggerload.info("User Receive an E-mail");
+
+	}
+
+	public void forgotPasswordEmail() {
+		
+		Loggerload.info("User see the verification code as 12345 ");
+		
+	}
+
 
 	public void resetPasswordPage() {
-		
+
 		String s = pu.getElementText(resetPasswordPage);
 		assertEquals(s,"Type in new Password", "InvalidPage"); 
 		Loggerload.info("Get the title of the page : " + s);
+
 	}
 
 	public void setNewPassword(String newpswd,String retypepswd) {
@@ -156,7 +200,21 @@ public class Login_POM {
 		retypepassword.clear();
 		newpassword.sendKeys(newpswd);
 		retypepassword.sendKeys(retypepswd);
+
 		Loggerload.info("NewPassword and Retype Password entered");
+		String newpwd=retypepswd;
+		int count=0;
+		for (int i = 0; i < newpwd.length(); i++) {
+			 
+		    if (!Character.isDigit(newpwd.charAt(i))
+		      && !Character.isLetter(newpwd.charAt(i))
+		      && !Character.isWhitespace(newpwd.charAt(i))) {
+		      count++;}
+		    if (count!=0)
+		    Loggerload.info(newpwd+"contains Number/special character");
+		    else
+		    Loggerload.info("The password must contain one Special character");
+		}
 	}
 
 	public void clickSubmitButton() throws Exception {
@@ -168,18 +226,7 @@ public class Login_POM {
 	public void clickCancelButton() throws Exception {
 		
 		pu.clickElement(cancelButton);
-		
 		Loggerload.info("NewPassword and Retype Password entered and Cancel button clicked");
 	}
 
-	
-
-	
-	
-	
-
-	
-	
-	
-	
 }
