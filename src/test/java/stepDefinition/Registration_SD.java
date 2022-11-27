@@ -15,10 +15,11 @@ public class Registration_SD
 	public static WebDriver driver=DriverManager.initializeDriver();
 	Registration_POM register=new Registration_POM();
 	
-@Given("Admin\\/User\\/Staff Logged on to LMS website")
+@Given("Launch the webapplication")
 public void admin_user_staff_logged_on_to_lms_website() {
 		
-	//driver.get("https://lmsnumpy.com");
+	driver.get("https://lms-frontend-phase2.herokuapp.com/login");
+	
 	}
 
 @When("Admin\\/User\\/Staff lands on Registration page")
