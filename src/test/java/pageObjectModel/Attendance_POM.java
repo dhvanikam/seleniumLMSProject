@@ -49,7 +49,7 @@ public class Attendance_POM {
 
 	public void homepage() {
 		Loggerload.info("User lands on Login PAge");
-		driver.get("https://lms-frontend-phase2.herokuapp.com/login ");
+		driver.get("");
 		PageFactory.initElements(driver, this);
 		
 		
@@ -67,18 +67,6 @@ public class Attendance_POM {
 		Loggerload.info("User clicks on login Button");
 		login.click();
 	}
-//	private void setFlags() {
-//		
-//		Loggerload.info("Based on their status set the Flag values:");
-//		Loggerload.info("*** Flag = 1 for User \n Flag= 2  for Staff  \n Flag = 3 for Admin *****  ");
-//		if(Username.getText()=="User")
-//		Flag=1;
-//		else if (Username.getText()=="Staff")
-//		Flag=2;
-//		else if (Username.getText()=="Admin")
-//		Flag=3;
-//	}
-
 	public void attendanceButton() {
 		
 		Loggerload.info("User clicks on Attendance Button");
