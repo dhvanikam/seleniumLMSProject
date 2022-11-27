@@ -9,9 +9,23 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjectModel.Registration_POM;
 
-public class Registration_SD {
-	public static WebDriver driver = DriverManager.initializeDriver();
-	Registration_POM register = new Registration_POM();
+public class Registration_SD 
+{
+	public static WebDriver driver=DriverManager.initializeDriver();
+	Registration_POM register=new Registration_POM();
+	
+@Given("Launch the webapplication")
+public void admin_user_staff_logged_on_to_lms_website() {
+		
+	driver.get("https://lms-frontend-phase2.herokuapp.com/login");
+	
+	}
+
+@When("Admin\\/User\\/Staff lands on Registration page")
+public void admin_user_staff_lands_on_registration_page() {
+	
+    register.registrationPage();
+}
 
 	@When("Admin\\/User\\/Staff lands on Registration page")
 	public void admin_user_staff_lands_on_registration_page() {
