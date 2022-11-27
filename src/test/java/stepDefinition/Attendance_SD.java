@@ -234,11 +234,4 @@ public class Attendance_SD {
 		attendance.deleteButton();
 	}
 
-	
-	
-	
-
-	
-
-
 }

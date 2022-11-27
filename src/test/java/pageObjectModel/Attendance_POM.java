@@ -99,15 +99,15 @@ public class Attendance_POM {
    public void pagination(String string) {
 		
 	   Loggerload.info("User able to the pages at bottom");
-	   String text= PaginationUtility .getElementText(page);
-	   assertEquals(string, text);
+	 //  String text= PaginationUtility .getElementText(page);
+	 //  assertEquals(string, text);
 		
 	}
 
 	public void paginationValidation() throws Exception {
 		
 		Loggerload.info("Pagination is Disabled");
-		PaginationUtility.clickElement(page);
+	//	PaginationUtility.clickElement(page);
 		
 	}
    public void clickCheckbox() {
