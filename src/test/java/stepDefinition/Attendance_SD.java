@@ -24,9 +24,20 @@ public class Attendance_SD {
 	static int Flag;
 	
 	
-	@Given("Admin\\/User\\/Staff Logged on to LMS Website")
-	public void admin_user_staff_logged_on_to_lms_website() {
-		attendance.validlogin();
+	@Given("user Logged on to LMS Website")
+	public void user_logged_on_to_lms_website() {
+	    attendance.homepage();
+	}
+
+	@When("user enter valid {string} and {string}")
+	public void user_enter_valid_and(String string, String string2) {
+	    attendance.validlogin(string,string2);
+	}
+
+
+	@Then("click on login button")
+	public void click_on_login_button() {
+	    attendance.clicklogin();
 	}
 	
 
@@ -112,17 +123,18 @@ public class Attendance_SD {
 	   
 	   }
    
-   @Then("User\\/Staff see header text as {string}")
-	public void user_satff_see_header_text_as(String AttendanceDetails) {
-	 
-		attendance.attendanceHeader(AttendanceDetails);
-		
-	}
-	   
+      
    	@When("User\\/Staff Clicks on Edit Button")
 	public void user_staff_clicks_on_edit_button() {
 	    
 		attendance.clickEditButton();
+		
+	}
+   	
+   	@Then("User\\/Staff see header text as {string}")
+	public void user_satff_see_header_text_as(String AttendanceDetails) {
+	 
+		attendance.attendanceHeader(AttendanceDetails);
 		
 	}
 
@@ -210,18 +222,19 @@ public class Attendance_SD {
 	    
 		attendance.clickEditButton();
 	}
-	@When("Admin Clicks on Delete Button")
-	public void admin_clicks_on_delete_button() {
-	    
-		attendance.deleteButton();
-	}
-
 	@Then("Admin see Error Message {string}")
 	public void admin_see_error_message(String string) {
 	    
 		attendance.errorMsg(string);
 	}
 
+	@When("Admin Clicks on Delete Button")
+	public void admin_clicks_on_delete_button() {
+	    
+		attendance.deleteButton();
+	}
+
+	
 	
 	
 
