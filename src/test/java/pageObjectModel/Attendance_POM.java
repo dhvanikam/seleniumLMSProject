@@ -22,31 +22,31 @@ public class Attendance_POM {
 	public static WebDriver driver=DriverManager.getChromedriver();
 	public static int Flag;
 	
-	@FindBy (id="")WebElement header;
-	@FindBy (id="")WebElement footer;
-	@FindBy (id="")WebElement attendancebutton;
-	@FindBy (id="")WebElement page;
-	@FindBy (id="")WebElement editButton;
-	@FindBy (id="")WebElement deleteButton;
-	@FindBy (id="")WebElement closeButton;
-	@FindBy (id="")WebElement checkbox;
-	@FindBy (id="")WebElement present;
-	@FindBy (id="")WebElement absent;
-	@FindBy (id="")WebElement save;
-	@FindBy (id="") WebElement cancel;
-	@FindBy (id="")WebElement successmsg;
-	@FindBy (id="") WebElement errormsg;
+	@FindBy (xpath="")WebElement header;
+	@FindBy (xpath="")WebElement footer;
+	@FindBy (xpath="")WebElement attendancebutton;
+	@FindBy (xpath="")WebElement page;
+	@FindBy (xpath="")WebElement editButton;
+	@FindBy (xpath="")WebElement deleteButton;
+	@FindBy (xpath="")WebElement closeButton;
+	@FindBy (xpath="")WebElement checkbox;
+	@FindBy (xpath="")WebElement present;
+	@FindBy (xpath="")WebElement absent;
+	@FindBy (xpath="")WebElement save;
+	@FindBy (xpath="") WebElement cancel;
+	@FindBy (xpath="")WebElement successmsg;
+	@FindBy (xpath="") WebElement errormsg;
 	
-	@FindBy (id="") WebElement yes;
-	@FindBy (id="") WebElement no;
+	@FindBy (xpath="") WebElement yes;
+	@FindBy (xpath="") WebElement no;
 	
 
 	public void validlogin()
 	{
-		driver.get("https://lms-frontend-phase2.herokuapp.com/login");
-		driver.findElement(By.id("username")).sendKeys("user");
-		driver.findElement(By.id("password")).sendKeys("pwd");
-		driver.findElement(By.id("login")).click();
+		driver.get(" ");
+		driver.findElement(By.id("")).sendKeys("user");
+		driver.findElement(By.id("")).sendKeys("pwd");
+		driver.findElement(By.id("")).click();
 		Loggerload.info("User Enter Valid login details");
 		setFlags();
 		PageFactory.initElements(driver, this);
@@ -176,7 +176,7 @@ public class Attendance_POM {
 		
 	public void clickEditButton() {
 		
-		Loggerload.info("USer clicks on Edit Button");
+		Loggerload.info("User clicks on Edit Button");
 		if(Flag==2) {
 			Loggerload.info("*** Flag Value is 2 *****");
 			Loggerload.info("*********User/Staff have permission to modify********");
@@ -225,12 +225,12 @@ public class Attendance_POM {
 			Loggerload.info("*** Flag Value is 2 *****");
 			Loggerload.info("*********User/Staff have permission to modify********");
 			deleteButton.click();
-		
 		}
-		else if (Flag==3) {
+		else if(Flag==3) {
+			
 			Loggerload.info("*** Flag Value is 3 *****");
 			Loggerload.info("****Admin don't have access******");}
-	}
+	  }
 	
 	public void deletepopup() {
 		driver.switchTo().activeElement();
@@ -250,7 +250,7 @@ public class Attendance_POM {
 	}
 	public void validadmin(String Admin) {
 		
-		Loggerload.info("****if user logged in as ADmin then Set Flag = 3****");
+		Loggerload.info("****if user logged in as Admin then Set Flag = 3****");
         if(Admin.equalsIgnoreCase("admin"))
 		Flag=3;
         Loggerload.info("******Flag=3***********");
