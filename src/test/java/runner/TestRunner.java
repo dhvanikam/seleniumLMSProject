@@ -7,8 +7,8 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(plugin = { "pretty", "html:target/lms.html" }, // reporting purpose
 		monochrome = false, // console output
-		tags = "", // tags from feature file
-		features = { "src/test/resources/feature/Batch.feature" }, // location of feature files
+		tags = "@login", // tags from feature file
+		features = { "src/test/resources/feature/Login.feature" }, // location of feature files
 		glue = {"stepDefinition"}) // location of step definition files
 
 public class TestRunner extends AbstractTestNGCucumberTests {

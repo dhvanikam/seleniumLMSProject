@@ -8,9 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PaginationUtility {
+	
 	public static WebDriver driver;
 
-	public static void clickElement(WebElement element) throws Exception {
+	public  void clickElement(WebElement element) throws Exception {
 		WebElement pageNav = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOf(element));
 		if (pageNav.isDisplayed() && pageNav.isEnabled()) {
