@@ -1,5 +1,6 @@
 package utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -10,9 +11,9 @@ public class SearchUtility {
 		element.sendKeys(inputText);
 	}
 
-	public boolean verifySearch(List<WebElement> data, String searchString) throws Exception {
+	public boolean verifySearch(ArrayList<String> data, String searchString) throws Exception {
 		for (int i = 0; i < data.size(); i++) {
-			String temp = data.get(i).getText();
+			String temp = data.get(i);
 			if ((temp.toLowerCase().contains(searchString.toLowerCase()))) {
 				return true;
 			} else {
