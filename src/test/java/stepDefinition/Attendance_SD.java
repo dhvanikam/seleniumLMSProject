@@ -30,8 +30,18 @@ public class Attendance_SD {
 	}
 
 	@When("user enter valid {string} and {string}")
-	public void user_enter_valid_and(String string, String string2) {
-	    attendance.validlogin(string,string2);
+	public void user_enter_valid_and(String uname, String pwd) {
+	    attendance.validloginUser(uname,pwd);
+	}
+
+	@When("staff enter valid {string} and {string} and code {string}")
+	public void staff_enter_valid_and_and_code(String uname, String pwd, String code) {
+	   attendance.ValidloginStaff(uname,pwd,code);
+	}
+	
+	@When("admin enter valid {string} and {string} and code {string}")
+	public void admin_enter_valid_and_and_code(String uname, String pwd, String code) {
+		 attendance.ValidloginAdmin(uname,pwd,code);
 	}
 
 

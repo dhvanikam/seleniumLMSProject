@@ -1,31 +1,31 @@
-@Registration_Page
+@Register
 Feature: Registration
 
  Background:
  Given Launch the webapplication
   
- @Register
+  #Header Validation
   Scenario: Header Validation
     Given Admin/User/Staff Logged on to LMS website
     When Admin/User/Staff lands on Registration page
     Then Admin/User/Staff sees the heading on the form as "Registration Form"
-    
-  @Register
+  
+  #Login Button
    Scenario:  Validating the Login button visibility
    When Admin/User/Staff lands on Registration page
    Then Admin/User/Staff sees a button with text "Log in" on the form
    
-   @Register
+   
   Scenario: Validating the Login button functionality
    When Admin/User/Staff selects the Log in button
    Then Admin/User/Staff lands on Log in page
    
-   @Register
+   
   Scenario: Validating the Sign Up button visibility
    When Admin/User/Staff lands on Registration page
    Then Admin/User/Staff sees a button with text "Sign Up" on the form
    
- @Register
+#Register page Validation 
   Scenario: Validating the text fields on the Registration page
   Given Admin/User/Staff is on the Registeration Page
   When Admin/User/Staff Enters valid Data
@@ -47,7 +47,7 @@ Then Birth Date will be Displayed
 When Admin/User/Staff Clicks on "Sign Up" button after entering all valid details
 Then Admin/User/Staff registration should be successful
 
- @Register
+#Regiter page negative scenarios
 Scenario: Invalid User Registration Details
 
 Given Admin/User/Staff is on the Registeration Page

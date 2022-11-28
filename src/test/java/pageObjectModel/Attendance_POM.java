@@ -24,11 +24,11 @@ public class Attendance_POM {
 	
 	public static WebDriver driver=DriverManager.getChromedriver();
 	public static int Flag;
-	//Flag=1 for user and staff
-	//Flag=2 for Admin
+	
 	
 	@FindBy (id="username")WebElement Username;
 	@FindBy (id="password")WebElement Password;
+	@FindBy (id="code")WebElement passcode;
 	@FindBy (id="login")WebElement login;
 	@FindBy (xpath="header")WebElement header;
 	@FindBy (xpath="footer")WebElement footer;
@@ -52,39 +52,44 @@ public class Attendance_POM {
 
 	public void homepage() {
 		Loggerload.info("User lands on Login PAge");
-		driver.get("https:\\lms");
+		driver.get("https://test-lmsapplication.com");
 		PageFactory.initElements(driver, this);
 		
 		
 	}
 	//validlogin 
-	public void validlogin(String user, String pwd) {
+	public void validloginUser(String uname, String pwd) {
 			
-		Loggerload.info("User Enter Valid login details");
-				Username.sendKeys(user); 
+		Loggerload.info("User Enter Valid USER login details");
+				Username.sendKeys(uname); 
 				Password.sendKeys(pwd);
-		setFlags(user);
+				Flag=1;
+		
 	}
 	
-	private void setFlags(String username) {
-		
-		if(username.equalsIgnoreCase("user"))
-			Flag=1;
-		else if (username.equalsIgnoreCase("staff"))
-			Flag=2;
-		else if(username.equalsIgnoreCase("admin"))
-			Flag=3;
-		else
-			Loggerload.info("Invalid user");
-		
-		
+	public void ValidloginAdmin(String uname, String pwd, String code) {
+		Loggerload.info("User Enter Valid STAFF login details");
+		Username.sendKeys(uname); 
+		Password.sendKeys(pwd);
+		passcode.sendKeys(code);
+		Flag=2;
 	}
-	//loginpage check
+	public void ValidloginStaff(String uname, String pwd, String code) {
+		Loggerload.info("User Enter Valid ADMIN login details");
+		Username.sendKeys(uname); 
+		Password.sendKeys(pwd);
+		passcode.sendKeys(code);
+		Flag=3;
+	}
+	
+	//login page
 	public void clicklogin() {
 		
 		Loggerload.info("User clicks on login Button");
 		login.click();
 	}
+	
+	//Attendance page 
 	public void attendanceButton() {
 		
 		Loggerload.info("User clicks on Attendance Button");
@@ -212,7 +217,7 @@ public class Attendance_POM {
 		Loggerload.info("User clicks on Edit Button");
         if((Flag==1)||(Flag==2))
 		editButton.click();
-        else
+        else if(Flag==3)
         	Loggerload.info("Denied Access");
    }  
 		
@@ -247,7 +252,7 @@ public class Attendance_POM {
 		Loggerload.info("User clicks on Delete Button");
 		if((Flag==1)||(Flag==2))
 			deleteButton.click();
-		else
+		else if(Flag==3)
 			Loggerload.info("Denied Access");
 	}
 	
@@ -277,4 +282,5 @@ public class Attendance_POM {
 	   String text=errormsg.getText();
 	   assertEquals(text,str,str);
 	}
+	
 }
