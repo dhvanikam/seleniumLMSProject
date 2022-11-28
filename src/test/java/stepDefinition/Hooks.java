@@ -21,29 +21,6 @@ public class Hooks {
 	public static WebDriver driver;
 	public static int Flag=1;
 	
-	@Before("@common")
-	public static void beforeuser() {
-		
-		Loggerload.info("***********Logged in as User/Staff/Admin**************");
-			}
-	
-
-	@Before("@staff and @user ")
-	public static void beforestaff() {
-		
-	 Loggerload.info("***********Logged in as User/Staff **************");
-	 		}
-	
-	
-	@Before("@admin")
-	public static void beforeadmin() {
-		
-	Loggerload.info("***********Logged in as Admin**************");
-	
-	}
-	
-	
-	
 	@AfterStep
 	public static void afterstep(Scenario scenario) {
 		
