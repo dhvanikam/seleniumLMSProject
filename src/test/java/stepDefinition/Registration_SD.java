@@ -1,6 +1,6 @@
+
 package stepDefinition;
 
-import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
@@ -18,7 +18,7 @@ public class Registration_SD
 @Given("Launch the webapplication")
 public void admin_user_staff_logged_on_to_lms_website() {
 		
-	driver.get("https://lms-frontend-phase2.herokuapp.com/login");
+	driver.get("https://lms");
 	
 	}
 
@@ -176,7 +176,7 @@ public void admin_user_staff_clicks_sign_up_button_with_invalid_password() {
 
 @When("User clicks Sign Up button with existing Admin\\/User\\/Staff name")
 public void user_clicks_sign_up_button_with_existing_admin_user_staff_name() {
-	register.existing_username();
+	register.invalid_username();
 }
 
 @Then("Admin\\/User\\/Staff should see the message {string}")
