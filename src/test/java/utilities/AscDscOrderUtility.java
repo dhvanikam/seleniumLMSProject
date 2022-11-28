@@ -2,10 +2,13 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
 
 public class AscDscOrderUtility {
 
-	public boolean verifyDescendingOrder(ArrayList<String> obtainedList) {
+public boolean verifyDescendingOrder(ArrayList<String> obtainedList) {
 		
 		// Making copy
 		ArrayList<String> sortedList = new ArrayList<>();
@@ -18,6 +21,11 @@ public class AscDscOrderUtility {
 	}
 	
 	public boolean verifyAscendingOrder(ArrayList<String> obtainedList) {
+//		// reading data
+//		ArrayList<String> obtainedList = new ArrayList<>();
+//		for (WebElement we : elementList) {
+//			obtainedList.add(we.getText());
+//		}
 		
 		// Making copy
 		ArrayList<String> sortedList = new ArrayList<>();

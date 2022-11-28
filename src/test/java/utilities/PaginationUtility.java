@@ -49,6 +49,7 @@ public class PaginationUtility {
 			for(int i = 0; i < pageData.length; i++) {
 				result.add(pageData[i]);
 			}
+			nextBtn.click();
 		}
 		return result;
 	}
