@@ -1,4 +1,3 @@
-
 package pageObjectModel;
 
 import static org.testng.Assert.assertEquals;
@@ -118,6 +117,7 @@ public class Attendance_POM {
    public void pagination(String string) {
 		
 	   Loggerload.info("User able to the pages at bottom");
+
 	   PaginationUtility paginationUtility = new PaginationUtility();
        paginationUtility.verifyElementText(string, page);
 		
@@ -125,9 +125,11 @@ public class Attendance_POM {
 
 	public void paginationValidation() throws Exception {
 		
+
 		 Loggerload.info("Pagination is Disabled");
 		 PaginationUtility paginationUtility = new PaginationUtility();
 	     paginationUtility.clickElement(page);
+
 	}
    public void clickCheckbox() {
 		

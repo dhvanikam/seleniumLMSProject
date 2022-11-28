@@ -32,10 +32,4 @@ public class Hooks {
 		
 	}
 
-	@AfterAll
-	public static void afterAll() {
-
-		driver.close();
-	}
-
 }

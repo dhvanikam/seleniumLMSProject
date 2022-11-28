@@ -4,5 +4,8 @@
   <test thread-count="5" name="Test">
   <packages><package name="runner"></package>
   </packages>
+  <classes>
+  <class name="runner.TestRunner"></class>
+  </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -1,4 +1,3 @@
-
 package stepDefinition;
 
 import static org.junit.Assert.assertTrue;
@@ -236,8 +235,4 @@ public class Attendance_SD {
 	    
 		attendance.deleteButton();
 	}
-
-}	
-	
-	
-
+}
