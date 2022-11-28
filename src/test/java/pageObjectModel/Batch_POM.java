@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import stepDefinition.DriverManager;
@@ -30,11 +31,20 @@ public class Batch_POM {
 	String cellXPathBatchStatus = "//*[@id='table']/tbody/tr/td[3]";
 	String cellXPathBatchNoOfClass = "//*[@id='table']/tbody/tr/td[4]";
 	String cellXPathProgramName = "//*[@id='table']/tbody/tr/td[5]";
+	public static int Flag;
+	
+	//Login
+	@FindBy (id="username")WebElement Username;
+	@FindBy (id="password")WebElement Password;
+	@FindBy (id="code")WebElement passcode;
+	
 	
 	@FindBy(id = "Header")WebElement headerTxt;
 	@FindBy(id = "footer")WebElement footerTxt;
 	@FindBy(id = "login")WebElement login;
+	@FindBy(id = "logout")WebElement logout;
 	@FindBy(id = "batchbtn")WebElement batchBtn;
+	
 	//Pagination
 	@FindBy(id = "nextPgBtn")WebElement nextPgBtn;
 	@FindBy(id = "prevPgBtn")WebElement prevPgBtn;
@@ -89,6 +99,49 @@ public class Batch_POM {
 	@FindBy(id = "firstCheckbox")WebElement firstCheckbox;
 	@FindBy(xpath = "//*[@class='checkbox']//*[@type='Checkbox']")List<WebElement> allCheckbox;
 	
+	public void homepage() {
+		Loggerload.info("User is on LMS website Login Page");
+		driver.get("https://test-lmsapplication.com");
+		PageFactory.initElements(driver, this);
+				
+	}
+	
+	//login 
+	public void validloginUser(String uname, String pwd) {
+			
+		Loggerload.info("User Enter Valid USER login details");
+				Username.sendKeys(uname); 
+				Password.sendKeys(pwd);
+				Flag=1;
+		
+	}
+	
+	public void validloginAdmin(String uname, String pwd, String code) {
+		Loggerload.info("User Enter Valid STAFF login details");
+		Username.sendKeys(uname); 
+		Password.sendKeys(pwd);
+		passcode.sendKeys(code);
+		Flag=2;
+	}
+	public void validloginStaff(String uname, String pwd, String code) {
+		Loggerload.info("User Enter Valid ADMIN login details");
+		Username.sendKeys(uname); 
+		Password.sendKeys(pwd);
+		passcode.sendKeys(code);
+		Flag=3;
+	}
+	
+	
+	public void loginpage() {
+		Loggerload.info("User is on LMS website login Page");
+		driver.get("https://test-lmsapplication.com/login");
+				
+	}
+	
+	public void verifyUserLoggedin() {
+		Loggerload.info("User is logged in to LMS website");
+		assertEquals(logout.getText(),"Logout");
+	}
 	public void clickOnBatchButton() {
 		Loggerload.info("User click on Batch button");
 		batchBtn.click();
@@ -124,7 +177,7 @@ public class Batch_POM {
 		Pgu.clickElement(lastPgBtn);
 	}
 
-	public void verifyPage() {
+	public void verifyManageBatchPage() {
 		Loggerload.info("Admin/User/Staff is on Manage Batch page");
 		assertEquals(driver.getCurrentUrl(), "URL");
 	}
@@ -147,7 +200,7 @@ public class Batch_POM {
 	}
 	
 
-	public void enterSerachText(String searchString) {
+	public void enterSearchText(String searchString) {
 		Loggerload.info("Admin/User/Staff enters string to be searched" + searchString);
 		new Actions(driver).sendKeys(serachTxtBox, searchString).sendKeys(serachTxtBox, Keys.ENTER).perform();
 	}
@@ -386,10 +439,20 @@ public class Batch_POM {
 	}
 
 	// Edit
+	public void verifyEditWindow() {
+		Loggerload.info("Admin is on Edit Window");
+		assertEquals(driver.getCurrentUrl(), "Edit Window");
+		
+	}
+
 	public void clickEditBtn() {
 		Loggerload.info("Admin Click on Edit button");
 		editBatchbtn.click();
-
+		Loggerload.info("User clicks on Edit Button");
+        if((Flag==1)||(Flag==2))
+        editBatchbtn.click();
+        else if(Flag==3)
+        	Loggerload.info("Denied Access");
 	}
 
 	public void verifyUpdatedMsg(String msg) {
@@ -398,9 +461,11 @@ public class Batch_POM {
 	}
 
 	public void clickDeleteBtn() {
-		Loggerload.info("Admin Click on Delete button");
-		deleteBatchbtn.click();
-
+		Loggerload.info("User clicks on Delete Button");
+		if((Flag==1)||(Flag==2))
+			deleteBatchbtn.click();
+		else if(Flag==3)
+			Loggerload.info("Denied Access");
 	}
 
 	public void verifyDeleteWindowPresent() {
@@ -477,6 +542,5 @@ public class Batch_POM {
 
 		}
 	}
-
 
 }
