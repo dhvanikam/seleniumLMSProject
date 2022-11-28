@@ -210,6 +210,8 @@ public class Attendance_SD {
 		
 		attendance.cancelButton();
 	}
+	
+	//Given user as admin Credential
 
 	@Given("Admin Logged onto LMS as {string}")
 	public void admin_logged_onto_lms_as(String Admin) {
@@ -233,5 +235,4 @@ public class Attendance_SD {
 	    
 		attendance.deleteButton();
 	}
-
 }

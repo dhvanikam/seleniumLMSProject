@@ -1,3 +1,4 @@
+
 package stepDefinition;
 
 import java.util.Map;
@@ -17,15 +18,9 @@ public class Registration_SD
 @Given("Launch the webapplication")
 public void admin_user_staff_logged_on_to_lms_website() {
 		
-	driver.get("https://lms-frontend-phase2.herokuapp.com/login");
+	driver.get("https://lms");
 	
 	}
-
-@When("Admin\\/User\\/Staff lands on Registration page")
-public void admin_user_staff_lands_on_registration_page() {
-	
-    register.registrationPage();
-}
 
 	@When("Admin\\/User\\/Staff lands on Registration page")
 	public void admin_user_staff_lands_on_registration_page() {
@@ -143,10 +138,13 @@ public void admin_user_staff_lands_on_registration_page() {
 		register.invalid_zip();
 	}
 
+
+
 	@When("Admin\\/User\\/Staff clicks Sign Up button with invalid City")
 	public void admin_user_staff_clicks_sign_up_button_with_invalid_city() {
 		register.getErrorMsg_zip();
 	}
+
 
 	@When("Admin\\/User\\/Staff clicks Sign Up button without selecting State")
 	public void admin_user_staff_clicks_sign_up_button_without_selecting_state() {
@@ -181,7 +179,7 @@ public void admin_user_staff_lands_on_registration_page() {
 
 	@When("User clicks Sign Up button with existing Admin\\/User\\/Staff name")
 	public void user_clicks_sign_up_button_with_existing_admin_user_staff_name() {
-		register.existing_username();
+		register.invalid_username();
 	}
 
 	@Then("Admin\\/User\\/Staff should see the message {string}")

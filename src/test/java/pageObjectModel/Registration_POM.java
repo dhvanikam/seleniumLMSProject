@@ -2,8 +2,13 @@ package pageObjectModel;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
+import javax.swing.text.AttributeSet.CharacterAttribute;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,9 +24,11 @@ public class Registration_POM {
 	
 	public static WebDriver driver=DriverManager.getChromedriver();
 	
+	//RegisterHomePage
 	@FindBy (id="register")WebElement register;
 	@FindBy (id="Header")WebElement header;
-	@FindBy (id="login")WebElement login;
+    @FindBy (id="login")WebElement login;
+    //NewRegisteration
 	@FindBy (id="signup")WebElement signup;
 	@FindBy (id="firstname")WebElement firstname;
 	@FindBy (id="lastname")WebElement lastname;
@@ -36,34 +43,40 @@ public class Registration_POM {
 	@FindBy (id="password")WebElement password;
 	@FindBy (id="email")WebElement email;
 	@FindBy (id="Success") WebElement display;
+	@FindBy (id="error") WebElement error;
+	
 	
 	public void registrationPage() {
+		
 		Loggerload.info("User click on Resgistration link");
 		register.click();
 		
 	}
 
 	public void verifyHeader(String str) {
+		
 		Loggerload.info("Get the title of the page:");
 		String text=driver.getTitle();
 		Loggerload.info(text); 
-		assertEquals(text,"Registration Form", "InvalidPage"); 
+		assertEquals(text,str, "InvalidPage"); 
 		
 	}
 
 	public void validatelogin(String string) {
-		Loggerload.info("Validate Login button");
-		assertEquals(true,login.isDisplayed());
+		
+		Loggerload.info("Validate Login text display ");
+		assertEquals(string,login.isDisplayed(),"Validated");
 	}
 
 	public void verifylogin() {
 		
-		Loggerload.info("user clicks login link");
+		Loggerload.info("user able to click on login link");
 		login.click();
 		
 	}
 
 	public void loginpage() {
+		
         Loggerload.info("Login page displays");
 		Loggerload.info(driver.getCurrentUrl());
 		Assert.assertEquals(driver.getTitle(), "log in page", "Login page displays ");
@@ -72,47 +85,38 @@ public class Registration_POM {
 
 	public void selectstate() {
 		
-		Loggerload.info("Select first state from Drop box");
-
+		Loggerload.info("User able to select first state from Drop box");
 		Select s=new Select(state);
 		s.getFirstSelectedOption();
 	}
 
 	public void displaystate() {
+		
 		Loggerload.info("Selected state should appear on textbox");
 		assertEquals(true,state.isDisplayed());
 	}
 
 	public void selectdob() {
-		Loggerload.info("Select first DOB from Drop box");
+		Loggerload.info("User select first DOB from Drop box");
 		Select d=new Select(dob);
 	    d.getFirstSelectedOption();
 		
 	}
 
 	public void displaydob() {
+		
 		Loggerload.info("Selected DOB should appear on textbox");
 		assertEquals(true,dob.isDisplayed());
 		
 	}
 
 	public void signupButton() {
+		
 		Loggerload.info("user click signup button");
 		signup.click();
 	}
 
-	public void displaySuccess() {
-		
-		Loggerload.info("Successfully Registered");
-		String text=display.getText();
-		Assert.assertEquals(text,"Registered Successfully");
-	}
-
-	public void error(String errormsg) {
-		 
-		 Loggerload.error(errormsg);//assert
-	}
-
+	//NewUSerPage
 	public void entervalidData(DataTable dataTable) {
 	
 		Loggerload.info("user enter valid Form Details");
@@ -142,24 +146,53 @@ public class Registration_POM {
 		        
 		   		}
 	}
+	
+	public void displaySuccess() {
+			
+			Loggerload.info("Successfully Registered");
+			String text=display.getText();
+			Assert.assertEquals(text,"Registered Successfully");
+		}
+
 
 	public void invalid_firstname() {
+		
 		Loggerload.info("user enter invalid firstname :");
-		firstname.sendKeys("123Alpaha");
+		firstname.sendKeys("123Alpah$%a");
+        
 	}
 
 	public void getErrorMsg_firstname() {
 		
-		Loggerload.error("Enter valid Firstname");
+		String input=firstname.getText();
+		int count=0;
+		for(int i=0;i<input.length();i++) {
+			if((Character.isDigit(input.charAt(i)))&&(Character.isWhitespace(input.charAt(i)))){
+				count++;
+				}
+		}
+		if(count!=0)
+			Loggerload.info("Invalid name");
+			Loggerload.error("Enter valid Firstname");
 	}
 	
 	public void invalid_lastname() {
+		
 		Loggerload.info("user enter invalid lastname :");
-		lastname.sendKeys("2324");
+		lastname.sendKeys("2324dj*&");
 		
 	}
     public void getErrorMsg_lastname() {
-		
+    	
+    	String input=lastname.getText();
+		int count=0;
+		for(int i=0;i<input.length();i++) {
+			if((Character.isDigit(input.charAt(i)))&&(Character.isWhitespace(input.charAt(i)))){
+				count++;
+				}
+		}
+		if(count!=0)
+			Loggerload.info("Invalid name");
 		Loggerload.error("Enter valid lastname");
 	}
 
@@ -170,20 +203,72 @@ public class Registration_POM {
 	}
      public void getErrorMsg_password() {
 		
-		Loggerload.error("Enter valid password");
+    	 String newpwd=password.getText();
+    	 
+    	boolean hasDigit = false;
+ 		boolean hasCapital = false;
+ 		boolean hasSpecialChar = false;
+ 		boolean hasAtleastEightChars = newpwd.length() > 8;
+ 		
+    	 for (int i = 0; i < newpwd.length(); i++) {
+ 			
+ 			if (Character.isDigit(newpwd.charAt(i))) {
+ 				hasDigit = true;
+ 			}
+ 			else if (Character.isUpperCase(newpwd.charAt(i))) {
+ 				hasCapital = true;
+ 			}
+ 			else if (!Character.isWhitespace(newpwd.charAt(i))) {
+ 				hasSpecialChar = true;
+ 			}
+ 	
+ 		}
+ 		
+ 		if (!hasDigit) {
+ 			Loggerload.info("Password must contains atleast one digit");
+ 		}
+ 		if (!hasCapital) {
+ 			Loggerload.info("Password must contains atleast one Capital letter");
+ 		}
+ 		if (!hasSpecialChar) {
+ 			Loggerload.info("Password must contains atleast one Special character");
+ 		}
+ 		if (!hasAtleastEightChars) {
+ 			Loggerload.info("Password must contains atleast Eight characters");
+
+ 		}
+ 		
+ 		Loggerload.info("Invalid Password");
+ 			
 	}
 
 	public void invalid_username() {
 		Loggerload.info("user enter invalid username :");
-		username.sendKeys("24dgsdg2422@2");
+		username.sendKeys("USER");
 		
 	}
     public void getErrorMsg_username() {
-		
-		Loggerload.error("Enter valid username");
+    	
+		String name=username.getText();
+		File file = new File("useraccounts.txt");
+		Scanner usernameCheck = null;
+		try {
+			usernameCheck = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(usernameCheck.hasNext()){
+	        String existingUsername = usernameCheck.nextLine();
+	        if(name.equalsIgnoreCase(existingUsername)){
+
+	           Loggerload.info("Username already exists");}
+	           Loggerload.info("Please enter a username: ");
+	      }
 	}
     
 	public void invalid_dob() {
+		
 		Loggerload.info("user enter invalid dob :");
 		dob.clear();
 		
@@ -191,17 +276,25 @@ public class Registration_POM {
 	
     public void getErrorMsg_dob() {
 		
-		Loggerload.error("Birthdate is required");
+		Loggerload.error("Birthdate is required:Please Select ");
 	}
 
 	public void invalid_houseno() {
+		
 		Loggerload.info("user enter invalid houseno :");
 		address.sendKeys("");
 	}
 	
    public void getErrorMsg_houseno() {
 		
-		Loggerload.error("Enter valid house number");
+	    String addr=address.getText();
+	    int count=0;
+		for(int i=0;i<addr.length();i++) {
+			if((Character.isWhitespace(addr.charAt(i)))){
+				count++;
+				}}
+		if(count!=0)
+		Loggerload.error("Enter valid house number:");
 	}
 
 	public void invalid_zip() {
@@ -210,25 +303,34 @@ public class Registration_POM {
 	}
 
     public void getErrorMsg_zip() {
-		
-		Loggerload.error("Enter valid Zip");
+		String zipcode=zip.getText();
+		int count=zipcode.length();
+		if(count>=5)
+			Loggerload.error("Invalid Zip code");
+		for(int i=0;i<count;i++) {
+			if(!Character.isDigit(zipcode.charAt(i)))
+				count++;
+				}
+		Loggerload.error("Enter valid Zip code");
 	}
     
 	public void invalid_state() {
+		
 		Loggerload.info("user enter invalid state :");
-		state.sendKeys("");
+		state.clear();;
 	}
    public void getErrorMsg_state() {
 		
-		Loggerload.error("State name is required");
+		Loggerload.error("State name is required:Please choose ");
+
 	}
 
-   public void existing_username() {
-		
-		Loggerload.warn("username Already Exists:");
-		username.sendKeys("numpy");
+    
+	public void error(String errormsg) {
+		 
+		 Loggerload.error(errormsg);
+		 Assert.assertTrue(true,error.getText());
 	}
-
   
 }
 	

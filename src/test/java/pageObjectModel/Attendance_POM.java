@@ -24,44 +24,62 @@ public class Attendance_POM {
 	
 	public static WebDriver driver=DriverManager.getChromedriver();
 	public static int Flag;
+	//Flag=1 for user and staff
+	//Flag=2 for Admin
 	
 	@FindBy (id="username")WebElement Username;
 	@FindBy (id="password")WebElement Password;
 	@FindBy (id="login")WebElement login;
-	@FindBy (xpath="")WebElement header;
-	@FindBy (xpath="")WebElement footer;
-	@FindBy (xpath="")WebElement attendancebutton;
-	@FindBy (xpath="")WebElement page;
-	@FindBy (xpath="")WebElement editButton;
-	@FindBy (xpath="")WebElement deleteButton;
-	@FindBy (xpath="")WebElement closeButton;
-	@FindBy (xpath="")WebElement checkbox;
-	@FindBy (xpath="")WebElement present;
-	@FindBy (xpath="")WebElement absent;
-	@FindBy (xpath="")WebElement save;
-	@FindBy (xpath="") WebElement cancel;
-	@FindBy (xpath="")WebElement successmsg;
-	@FindBy (xpath="") WebElement errormsg;
+	@FindBy (xpath="header")WebElement header;
+	@FindBy (xpath="footer")WebElement footer;
+	@FindBy (xpath="attendance")WebElement attendancebutton;
+	@FindBy (xpath="page")WebElement page;
+	@FindBy (xpath="edit")WebElement editButton;
+	@FindBy (xpath="delete")WebElement deleteButton;
+	@FindBy (xpath="close")WebElement closeButton;
+	@FindBy (xpath="checkbox")WebElement checkbox;
+	@FindBy (xpath="present")WebElement present;
+	@FindBy (xpath="absent")WebElement absent;
+	@FindBy (xpath="save")WebElement save;
+	@FindBy (xpath="cancel") WebElement cancel;
+	@FindBy (xpath="success")WebElement successmsg;
+	@FindBy (xpath="error") WebElement errormsg;
 	
-	@FindBy (xpath="") WebElement yes;
-	@FindBy (xpath="") WebElement no;
+	@FindBy (xpath="yes") WebElement yes;
+	@FindBy (xpath="no") WebElement no;
+	
 	
 
 	public void homepage() {
 		Loggerload.info("User lands on Login PAge");
-		driver.get("");
+		driver.get("https:\\lms");
 		PageFactory.initElements(driver, this);
 		
 		
 	}
+	//validlogin 
 	public void validlogin(String user, String pwd) {
 			
 		Loggerload.info("User Enter Valid login details");
 				Username.sendKeys(user); 
 				Password.sendKeys(pwd);
-			
+		setFlags(user);
 	}
 	
+	private void setFlags(String username) {
+		
+		if(username.equalsIgnoreCase("user"))
+			Flag=1;
+		else if (username.equalsIgnoreCase("staff"))
+			Flag=2;
+		else if(username.equalsIgnoreCase("admin"))
+			Flag=3;
+		else
+			Loggerload.info("Invalid user");
+		
+		
+	}
+	//loginpage check
 	public void clicklogin() {
 		
 		Loggerload.info("User clicks on login Button");
@@ -99,16 +117,19 @@ public class Attendance_POM {
    public void pagination(String string) {
 		
 	   Loggerload.info("User able to the pages at bottom");
-	 //  String text= PaginationUtility .getElementText(page);
-	 //  assertEquals(string, text);
+
+	   PaginationUtility paginationUtility = new PaginationUtility();
+       paginationUtility.verifyElementText(string, page);
 		
 	}
 
 	public void paginationValidation() throws Exception {
 		
-		Loggerload.info("Pagination is Disabled");
-	//	PaginationUtility.clickElement(page);
-		
+
+		 Loggerload.info("Pagination is Disabled");
+		 PaginationUtility paginationUtility = new PaginationUtility();
+	     paginationUtility.clickElement(page);
+
 	}
    public void clickCheckbox() {
 		
@@ -182,14 +203,14 @@ public class Attendance_POM {
 	public void validuser(String User, String Staff) {
 		
 		if(User.equalsIgnoreCase("user")||(Staff.equalsIgnoreCase("staff")))
-			Flag=1;
+			Loggerload.info("****** *USer/Staff only able to Access Edit/Delete Button*********");
 	   			   
 	}
 	
 	public void clickEditButton() {
 		
 		Loggerload.info("User clicks on Edit Button");
-        if(Flag==1)
+        if((Flag==1)||(Flag==2))
 		editButton.click();
         else
         	Loggerload.info("Denied Access");
@@ -198,7 +219,7 @@ public class Attendance_POM {
 	public void saveButton() {
 		
 		Loggerload.info("User clicks on save Button");
-			save.click();
+		save.click();
 			
 			}
    public void successmsg(String str) {
@@ -210,7 +231,7 @@ public class Attendance_POM {
 
 	public void cancelButton() {
 		Loggerload.info("User clicks on cancel Button");
-		  cancel.click();
+		 cancel.click();
 		 
 	}
 
@@ -224,7 +245,7 @@ public class Attendance_POM {
 	public void deleteButton() {
 		
 		Loggerload.info("User clicks on Delete Button");
-		if(Flag==1)
+		if((Flag==1)||(Flag==2))
 			deleteButton.click();
 		else
 			Loggerload.info("Denied Access");
@@ -247,7 +268,7 @@ public class Attendance_POM {
 	public void validadmin(String Admin) {
 		
 		if(Admin.equalsIgnoreCase("admin"))
-		Flag=2;
+			Loggerload.info("****** Admin Dont have access to Edit/Delete *********");
 	}
 	
 	public void errorMsg(String str) {
@@ -256,11 +277,4 @@ public class Attendance_POM {
 	   String text=errormsg.getText();
 	   assertEquals(text,str,str);
 	}
-	
-	
-
-	
-
-	
-
 }
