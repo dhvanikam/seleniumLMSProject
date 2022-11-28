@@ -1,8 +1,5 @@
 allure-results/
 target/
 test-output/
-<<<<<<< HEAD
 logs/
-=======
-logs/
->>>>>>> e2296300a68504c90100d7fea388a0bf85742b87
+
