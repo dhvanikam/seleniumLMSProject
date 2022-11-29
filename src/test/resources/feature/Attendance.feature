@@ -9,7 +9,7 @@ Feature: Attendance
    
   @staff
   Scenario:
-       Given user Logged on to LMS Website
+       Given attendance user Logged on to LMS Website
        When staff enter valid "Staff" and "Staff" and code "54321"
        Then click on login button
        
