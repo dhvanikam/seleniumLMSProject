@@ -12,7 +12,7 @@ package runner;
 			features = { "src/test/resources/feature",}, // location of feature files
 			glue = {"stepDefinition"}) // location of step definition files
 
-	public class runner_Register extends AbstractTestNGCucumberTests {
+	public class Runner_Register extends AbstractTestNGCucumberTests {
 
 		@DataProvider(parallel = false)
 		public Object[][] scenarios() {

@@ -12,7 +12,7 @@ public class Logout_SD {
 	@Given("Admin\\/User\\/Staff Logged on to LMS website")
 	public void admin_user_staff_logged_on_to_lms_website() {
 		
-		
+		pl.loginpage();
 	    
 	}
 

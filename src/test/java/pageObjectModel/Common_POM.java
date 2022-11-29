@@ -24,7 +24,7 @@ package pageObjectModel;
 		public void homepage() {
 			Loggerload.info("User lands on Login PAge");
 			driver.get("https://test-lmsapplication.com");
-					
+			PageFactory.initElements(driver, this);	
 		}
 		
 		//validlogin for User

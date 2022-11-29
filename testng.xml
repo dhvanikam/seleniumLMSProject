@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
-  <packages><package name="runner"></package>
-  </packages>
-  <classes>
-  <class name="runner.runner_Register"></class>
-   </classes>
-  </test> <!-- Test -->
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="runner.Runner_Register" />
+			<class name="runner.Runner_login" />		
+			<class name="runner.Runner_Admin" />
+			<class name="runner.Runner_User" />
+			<class name="runner.Runner_Staff" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -15,6 +15,11 @@ public class Logout_POM {
 	@FindBy(xpath = "//button[@id='logoutButton']") WebElement logoutButton;
 	@FindBy(xpath = "//button[@id='loginButton']") WebElement loginButton;
 
+	public void loginpage() {
+		Loggerload.info("User is on LMS website login Page");
+		driver.get("https://test-lmsapplication.com/login");
+		
+	}
 	
 	public void logout(){
 		
@@ -31,5 +36,7 @@ public class Logout_POM {
 
 			
 	}
+
+	
 	
 }

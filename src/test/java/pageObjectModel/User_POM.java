@@ -143,20 +143,20 @@ public class User_POM {
 	
 	public void homepage() {
 		Loggerload.info("User is on LMS website Login Page");
-		driver.get("");
+		driver.get("https://test-lmsapplication.com");
 		PageFactory.initElements(driver, this);
 
 	}
 
 	public void loginpage() {
 		Loggerload.info("User is on LMS website Page");
-		driver.get("");
+		driver.get("https://test-lmsapplication.com/login");
 
 	}
 
 	public void verifyManageUserPage() {
 		Loggerload.info("Verify that user is on Manage user page after clicking User Tab");
-		assertEquals(driver.getCurrentUrl(), "");
+		assertEquals(driver.getCurrentUrl(), "Test");
 	}
 
 	public void verifyHeaderText(String header) {
