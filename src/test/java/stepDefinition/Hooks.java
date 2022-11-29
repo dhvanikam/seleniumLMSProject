@@ -12,6 +12,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
 import utilities.Loggerload;
@@ -20,6 +21,12 @@ public class Hooks {
 
 	public static WebDriver driver;
 	public static int Flag=1;
+	
+	@BeforeAll
+	public static void beforeall() {
+		DriverManager.initializeDriver();
+		driver=DriverManager.getChromedriver();
+	}
 	
 	@AfterStep
 	public static void afterstep(Scenario scenario) {
@@ -30,6 +37,11 @@ public class Hooks {
 			Allure.addAttachment("Myscreenshot",new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
 		}
 		
+	}
+	
+	@AfterAll
+	public static void afterall() {
+		DriverManager.closeDriver();
 	}
 
 }

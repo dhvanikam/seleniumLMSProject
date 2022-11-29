@@ -53,9 +53,7 @@ public class Attendance_POM {
 	public void homepage() {
 		Loggerload.info("User lands on Login PAge");
 		driver.get("https://test-lmsapplication.com");
-		PageFactory.initElements(driver, this);
-		
-		
+		PageFactory.initElements(driver, this);	
 	}
 	//validlogin 
 	public void validloginUser(String uname, String pwd) {

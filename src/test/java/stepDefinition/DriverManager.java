@@ -9,20 +9,16 @@ public class DriverManager {
 
 	public static WebDriver driver;
 
-	public static WebDriver initializeDriver() {
-
-		WebDriverManager.chromedriver().browserVersion("106.0.0").setup();
+	public static void initializeDriver() {
+		WebDriverManager.chromedriver().browserVersion("107.0.0").setup();
 		driver = new ChromeDriver();
-		return driver;
-
 	}
 
 	public static WebDriver getChromedriver() {
 		return driver;
 	}
 
-	public void closeDriver() {
-
+	public static void closeDriver() {
 		driver.close();
 	}
 

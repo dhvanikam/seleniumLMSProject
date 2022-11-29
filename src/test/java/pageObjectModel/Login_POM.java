@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WrapsElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import stepDefinition.DriverManager;
@@ -41,7 +42,8 @@ public class Login_POM {
 
 	public void openWebsite() {
 		
-		driver.get("https://LMS.com");
+		driver.get("https://test-lmsapplication.com");
+		PageFactory.initElements(driver, this);
 		driver.manage().window().maximize();
 		Loggerload.info("User opens the LMS website");
 	}

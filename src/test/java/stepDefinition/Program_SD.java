@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 import pageObjectModel.Program_POM;
 
 public class Program_SD {
-	public static WebDriver driver = DriverManager.initializeDriver();
+	public static WebDriver driver = DriverManager.getChromedriver();
 	Program_POM program = new Program_POM();
 	
     @When("Program_Admin\\/User\\/Staff is on Manage Program page")
@@ -18,9 +18,7 @@ public class Program_SD {
 	@Then("Program_Admin\\/User\\/Staff see header text as {string}")
 	public void program_admin_user_staff_see_header_text_as(String headertext) {
 		program.verifyHeaderText(headertext);
-	}
-	   
-	
+	}	
 
 	@Then("Program_Admin\\/User\\/Staff see Footer text as {string}")
 	public void program_admin_user_staff_see_footer_text_as(String footertext) {

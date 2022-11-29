@@ -11,7 +11,7 @@ import pageObjectModel.Assignment_POM;
 
 public class Assignment_SD {
 
-	public static WebDriver driver = DriverManager.initializeDriver();
+	public static WebDriver driver = DriverManager.getChromedriver();
 	Assignment_POM as = new Assignment_POM();
 	SwitchWindowUtility SW = new SwitchWindowUtility();
 	
@@ -25,7 +25,6 @@ public class Assignment_SD {
 	@When("Assignment_Admin\\/User\\/Staff clicks on Assignment Page")
 	public void assignment_admin_user_staff_clicks_on_assignment_page()  {
 		as.manageAssignmentPage();
-		//***************
 	   
 	}
 

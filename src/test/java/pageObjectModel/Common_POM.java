@@ -10,13 +10,14 @@ package pageObjectModel;
 
 	public class Common_POM {
 
-		private static WebDriver driver=DriverManager.initializeDriver();
+		private static WebDriver driver=DriverManager.getChromedriver();
 		public static int Flag;
 		
 		@FindBy (id="username")WebElement Username;
 		@FindBy (id="password")WebElement Password;
 		@FindBy (id="code")WebElement passcode;
 		@FindBy (id="login")WebElement login;
+		@FindBy (id="logout")WebElement logout;
 		
 		//Homepage Launch
 		
@@ -62,6 +63,13 @@ package pageObjectModel;
 				
 				Loggerload.info("User clicks on login Button");
 				login.click();
+			}
+			public void clicklogout() {
+				
+				Loggerload.info("User clicks on logout Button");
+				if (logout.isDisplayed()) {
+					logout.click();
+				}
 			}
 	}
 

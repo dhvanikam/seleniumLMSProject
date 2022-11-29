@@ -12,7 +12,7 @@ import pageObjectModel.Registration_POM;
 
 public class Registration_SD 
 {
-	public static WebDriver driver=DriverManager.initializeDriver();
+	public static WebDriver driver=DriverManager.getChromedriver();
 	Registration_POM register=new Registration_POM();
 	
     @Given("Launch the webapplication")
@@ -27,6 +27,12 @@ public class Registration_SD
 
 		register.registrationPage();
 	}
+
+//	@When("Admin\\/User\\/Staff lands on Registration page")
+//	public void admin_user_staff_lands_on_registration_page() {
+//
+//		register.registrationPage();
+//	}
 
 	@Then("Admin\\/User\\/Staff sees the heading on the form as {string}")
 	public void admin_user_staff_sees_the_heading_on_the_form_as(String string) {
@@ -187,3 +193,4 @@ public class Registration_SD
 		register.error(string);
 	}
 }
+

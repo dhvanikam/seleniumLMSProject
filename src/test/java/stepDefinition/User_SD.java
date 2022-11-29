@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import pageObjectModel.User_POM;
 
 public class User_SD {
-	public static WebDriver driver = DriverManager.initializeDriver();
+	public static WebDriver driver = DriverManager.getChromedriver();
 	User_POM user = new User_POM();
 
 	@Given("ManageUser_Admin\\/User\\/Staff is on LMS website")

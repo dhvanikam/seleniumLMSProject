@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import pageObjectModel.Batch_POM;
 
 public class Batch_SD {
-	public static WebDriver driver = DriverManager.initializeDriver();
+	public static WebDriver driver = DriverManager.getChromedriver();
 	Batch_POM batch = new Batch_POM();
 	static String username;
 	static int Flag;

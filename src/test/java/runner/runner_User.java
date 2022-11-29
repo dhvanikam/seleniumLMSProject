@@ -5,11 +5,9 @@ package runner;
 	import io.cucumber.testng.AbstractTestNGCucumberTests;
 	import io.cucumber.testng.CucumberOptions;
 
-
-
 	@CucumberOptions(plugin = { "pretty", "html:target/lms.html" }, // reporting purpose
 			monochrome = false, // console output
-			tags = " @user @logout",// tags from feature file
+			tags = "@user or @logout",// tags from feature file
 			features = { "src/test/resources/feature"}, // location of feature files
 			glue = {"stepDefinition"}) // location of step definition files
 

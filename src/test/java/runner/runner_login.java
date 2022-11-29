@@ -7,7 +7,7 @@ package runner;
 
 	@CucumberOptions(plugin = { "pretty", "html:target/lms.html" }, // reporting purpose
 			monochrome = false, // console output
-			tags = "@login @logout" ,// tags from feature file
+			tags = "@login or @logout" ,// tags from feature file
 			features = { "src/test/resources/feature",}, // location of feature files
 			glue = {"stepDefinition"}) // location of step definition files
 

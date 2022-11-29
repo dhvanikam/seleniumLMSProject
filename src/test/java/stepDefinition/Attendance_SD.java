@@ -17,7 +17,7 @@ import utilities.Loggerload;
 
 public class Attendance_SD {
 	
-	private static WebDriver driver=DriverManager.initializeDriver();;
+	private static WebDriver driver=DriverManager.getChromedriver();;
 	Attendance_POM attendance=new Attendance_POM();
 	Login_POM login=new Login_POM();
 	static String username;
