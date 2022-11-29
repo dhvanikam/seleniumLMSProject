@@ -286,7 +286,7 @@ static int Flag;
 		assertEquals(driver.getCurrentUrl(), "Manage Program page URL");
 	}
 	public void verifyProgramPage() {
-		Loggerload.info("Admin verify that admin is on Manage Batch page");
+		Loggerload.info("Admin verify that admin is on Manage Program page");
 		assertEquals(driver.getCurrentUrl(), "Manage Program page URL");
 	}
 
@@ -311,10 +311,10 @@ static int Flag;
 	public void clickEditButton() {
 		Loggerload.info("Click Edit button");
 		if(Flag==2) 
-			programbtn.click();
+			editbtn.click();
 			else 
 				Loggerload.info("Denied Access");
-		editbtn.click();
+		
 	}
 	
 	public void verifyUpdatedMsg(String msg) {
@@ -325,7 +325,11 @@ static int Flag;
 	//delete functionality
 	public void clickRightDeleteButton() {
 		Loggerload.info("Click Delete button on right side");
-		rightdeletebtn.click();
+		if(Flag==2) 
+			rightdeletebtn.click();
+			else 
+				Loggerload.info("Denied Access");
+		
 	}
 	
 	public void verifyDeleteWindowPresent() {
@@ -350,6 +354,14 @@ static int Flag;
 	}
 	
 	//multiple delete Functionality
+	public void clickmaindelete() {
+		if(Flag==2) 
+			maindeleteBtn.click();
+			else 
+				Loggerload.info("Denied Access");
+		
+		
+	}
 	public void verifyMainDeleteBtnDisabled() {
 		Loggerload.info("Admin verify that delete button is disabled");
 		Assert.assertFalse("Delete Button is Enabled", maindeleteBtn.isEnabled());
