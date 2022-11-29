@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PaginationUtility {
 	public static WebDriver driver;
 
-	public void clickElement(WebElement element) throws Exception {
+	public void clickElement(WebElement element) {
 		WebElement pageNav = new WebDriverWait(driver, Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOf(element));
 		if (pageNav.isDisplayed() && pageNav.isEnabled()) {
@@ -23,7 +23,6 @@ public class PaginationUtility {
 
 		}
 		Loggerload.error("Element is not clickable");
-		throw new Exception("Element is not clickable");
 	}
 
 	public String getElementText(WebElement element) {

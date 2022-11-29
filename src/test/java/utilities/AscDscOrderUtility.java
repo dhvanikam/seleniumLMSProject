@@ -8,32 +8,27 @@ import org.openqa.selenium.WebElement;
 
 public class AscDscOrderUtility {
 
-public boolean verifyDescendingOrder(ArrayList<String> obtainedList) {
+public boolean verifyDescendingOrder(ArrayList<String> originalList) {
 		
 		// Making copy
 		ArrayList<String> sortedList = new ArrayList<>();
-		for (String s : obtainedList) {
+		for (String s : originalList) {
 			sortedList.add(s);
 		}
 		
 		Collections.sort(sortedList, Collections.reverseOrder());
-		return sortedList.equals(obtainedList);
+		return sortedList.equals(originalList);
 	}
 	
-	public boolean verifyAscendingOrder(ArrayList<String> obtainedList) {
-//		// reading data
-//		ArrayList<String> obtainedList = new ArrayList<>();
-//		for (WebElement we : elementList) {
-//			obtainedList.add(we.getText());
-//		}
+	public boolean verifyAscendingOrder(ArrayList<String> originalList) {
 		
 		// Making copy
 		ArrayList<String> sortedList = new ArrayList<>();
-		for (String s : obtainedList) {
+		for (String s : originalList) {
 			sortedList.add(s);
 		}
 		
 		Collections.sort(sortedList);
-		return sortedList.equals(obtainedList);
+		return sortedList.equals(originalList);
 	}
 }
