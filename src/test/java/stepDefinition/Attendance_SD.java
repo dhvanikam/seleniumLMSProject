@@ -24,32 +24,11 @@ public class Attendance_SD {
 	static int Flag;
 	
 	
-	@Given("user Logged on to LMS Website")
-	public void user_logged_on_to_lms_website() {
+	@Given("attendance user Logged on to LMS Website")
+	public void attendance_user_logged_on_to_lms_website() {
 	    attendance.homepage();
 	}
 
-	@When("user enter valid {string} and {string}")
-	public void user_enter_valid_and(String uname, String pwd) {
-	    attendance.validloginUser(uname,pwd);
-	}
-
-	@When("staff enter valid {string} and {string} and code {string}")
-	public void staff_enter_valid_and_and_code(String uname, String pwd, String code) {
-	   attendance.ValidloginStaff(uname,pwd,code);
-	}
-	
-	@When("admin enter valid {string} and {string} and code {string}")
-	public void admin_enter_valid_and_and_code(String uname, String pwd, String code) {
-		 attendance.ValidloginAdmin(uname,pwd,code);
-	}
-
-
-	@Then("click on login button")
-	public void click_on_login_button() {
-	    attendance.clicklogin();
-	}
-	
 
 	@When("Admin\\/User\\/Staff Clicks on Attendance button")
 	public void admin_user_staff_clicks_on_attendance_button() {
