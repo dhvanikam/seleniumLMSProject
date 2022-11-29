@@ -28,6 +28,7 @@ public class Registration_POM {
 	@FindBy (id="register")WebElement register;
 	@FindBy (id="Header")WebElement header;
     @FindBy (id="login")WebElement login;
+    
     //NewRegisteration
 	@FindBy (id="signup")WebElement signup;
 	@FindBy (id="firstname")WebElement firstname;
@@ -42,6 +43,7 @@ public class Registration_POM {
 	@FindBy (id="username")WebElement username;
 	@FindBy (id="password")WebElement password;
 	@FindBy (id="email")WebElement email;
+	
 	@FindBy (id="Success") WebElement display;
 	@FindBy (id="error") WebElement error;
 	
@@ -83,39 +85,7 @@ public class Registration_POM {
 		
 	}
 
-	public void selectstate() {
-		
-		Loggerload.info("User able to select first state from Drop box");
-		Select s=new Select(state);
-		s.getFirstSelectedOption();
-	}
-
-	public void displaystate() {
-		
-		Loggerload.info("Selected state should appear on textbox");
-		assertEquals(true,state.isDisplayed());
-	}
-
-	public void selectdob() {
-		Loggerload.info("User select first DOB from Drop box");
-		Select d=new Select(dob);
-	    d.getFirstSelectedOption();
-		
-	}
-
-	public void displaydob() {
-		
-		Loggerload.info("Selected DOB should appear on textbox");
-		assertEquals(true,dob.isDisplayed());
-		
-	}
-
-	public void signupButton() {
-		
-		Loggerload.info("user click signup button");
-		signup.click();
-	}
-
+	
 	//NewUSerPage
 	public void entervalidData(DataTable dataTable) {
 	
@@ -147,13 +117,49 @@ public class Registration_POM {
 		   		}
 	}
 	
+   public void selectstate() {
+		
+		Loggerload.info("User able to select first state from Drop box");
+		Select s=new Select(state);
+		s.getFirstSelectedOption();
+	}
+
+	public void displaystate() {
+		
+		Loggerload.info("Selected state should appear on textbox");
+		assertEquals(true,state.isDisplayed());
+	}
+
+	public void selectdob() {
+		Loggerload.info("User select first DOB from Drop box");
+		Select d=new Select(dob);
+	    d.getFirstSelectedOption();
+		
+	}
+
+	public void displaydob() {
+		
+		Loggerload.info("Selected DOB should appear on textbox");
+		assertEquals(true,dob.isDisplayed());
+		
+	}
+	
+
+
+	public void signupButton() {
+		
+		Loggerload.info("user click signup button");
+		signup.click();
+	}
+
 	public void displaySuccess() {
 			
 			Loggerload.info("Successfully Registered");
 			String text=display.getText();
 			Assert.assertEquals(text,"Registered Successfully");
 		}
-
+	
+//Negative Svenarios
 
 	public void invalid_firstname() {
 		
@@ -307,9 +313,10 @@ public class Registration_POM {
 		int count=zipcode.length();
 		if(count>=5)
 			Loggerload.error("Invalid Zip code");
+		int j=0;
 		for(int i=0;i<count;i++) {
 			if(!Character.isDigit(zipcode.charAt(i)))
-				count++;
+				j++;
 				}
 		Loggerload.error("Enter valid Zip code");
 	}

@@ -1,21 +1,41 @@
 package stepDefinition;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import pageObjectModel.Common_POM;
 
 public class Common_SD {
 
-//	@Then("Admin\\/User\\/Staff see header text as {string}")
-//	public void admin_user_staff_see_header_text_as(String header) {
-//		batch.verifyHeaderText(header);
-//	}
+	Common_POM common = new Common_POM();
 	
-//	@Then("Admin\\/User\\/Staff see Footer text as {string}")
-//	public void admin_user_staff_see_footer_text_as(String footer) {
-//		batch.verifyFooterText(footer);
-//	}
+	@Given("user Logged on to LMS Website")
+	public void user_logged_on_to_lms_website() {
+		
+	    common.homepage();
+	}
+
+	@When("user enter valid {string} and {string}")
+	public void user_enter_valid_and(String uname, String pwd) {
+	   
+	   common.validloginUser(uname, pwd);
+	}
+
+	@When("staff enter valid {string} and {string} and code {string}")
+	public void staff_enter_valid_and_and_code(String uname, String pwd, String code) {
+	   common.ValidloginStaff(uname, pwd, code);
+	}
 	
-//	@Then("Admin\\/User\\/Staff see the text as {string}")
-//	public void admin_user_staff_see_the_text_as(String expText) {
-//		batch.verifyPageText(expText);
-//	}
+	@When("admin enter valid {string} and {string} and code {string}")
+	public void admin_enter_valid_and_and_code(String uname, String pwd, String code) {
+		
+		 common.ValidloginAdmin(uname, pwd, code);
+	}
+
+
+	@Then("click on login button")
+	public void click_on_login_button() {
+		
+	    common.clicklogin();
+	}
 }

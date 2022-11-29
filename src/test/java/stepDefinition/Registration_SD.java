@@ -15,10 +15,10 @@ public class Registration_SD
 	public static WebDriver driver=DriverManager.initializeDriver();
 	Registration_POM register=new Registration_POM();
 	
-@Given("Launch the webapplication")
-public void admin_user_staff_logged_on_to_lms_website() {
+    @Given("Launch the webapplication")
+    public void admin_user_staff_logged_on_to_lms_website() {
 		
-	driver.get("https://lms");
+	driver.get("https://test-lmsapplication.com");
 	
 	}
 

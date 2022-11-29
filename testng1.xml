@@ -5,7 +5,7 @@
   <packages><package name="runner"></package>
   </packages>
   <classes>
-  <class name="runner.TestRunner"></class>
-   </classes>
+  <class name="runner.TestRunner1"></class>
+    </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
