@@ -105,32 +105,7 @@ public class Batch_POM {
 		PageFactory.initElements(driver, this);
 				
 	}
-	
-	//login 
-	public void validloginUser(String uname, String pwd) {
-			
-		Loggerload.info("User Enter Valid USER login details");
-				Username.sendKeys(uname); 
-				Password.sendKeys(pwd);
-				Flag=1;
-		
-	}
-	
-	public void validloginAdmin(String uname, String pwd, String code) {
-		Loggerload.info("User Enter Valid STAFF login details");
-		Username.sendKeys(uname); 
-		Password.sendKeys(pwd);
-		passcode.sendKeys(code);
-		Flag=2;
-	}
-	public void validloginStaff(String uname, String pwd, String code) {
-		Loggerload.info("User Enter Valid ADMIN login details");
-		Username.sendKeys(uname); 
-		Password.sendKeys(pwd);
-		passcode.sendKeys(code);
-		Flag=3;
-	}
-	
+
 	
 	public void loginpage() {
 		Loggerload.info("User is on LMS website login Page");
@@ -448,11 +423,6 @@ public class Batch_POM {
 	public void clickEditBtn() {
 		Loggerload.info("Admin Click on Edit button");
 		editBatchbtn.click();
-		Loggerload.info("User clicks on Edit Button");
-        if((Flag==1)||(Flag==2))
-        editBatchbtn.click();
-        else if(Flag==3)
-        	Loggerload.info("Denied Access");
 	}
 
 	public void verifyUpdatedMsg(String msg) {
@@ -462,10 +432,7 @@ public class Batch_POM {
 
 	public void clickDeleteBtn() {
 		Loggerload.info("User clicks on Delete Button");
-		if((Flag==1)||(Flag==2))
-			deleteBatchbtn.click();
-		else if(Flag==3)
-			Loggerload.info("Denied Access");
+		deleteBatchbtn.click();
 	}
 
 	public void verifyDeleteWindowPresent() {

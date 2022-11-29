@@ -3,31 +3,31 @@ Feature: Batch
 
   @user 
   Scenario:
-       Given user is on to LMS Website login Page
-       When user enter valid username as "User" and password as "User"
-       Then click on login button
+       Given user Logged on to LMS Website
+       When user enter valid "User" and "User"
+       Then  click on login button
    
   @staff
   Scenario:
-       Given user is on to LMS Website login Page
-       When staff enter valid username "Staff" and password "Staff" and code "54321"
-       Then click on login button
+       Given user Logged on to LMS Website
+       When staff enter valid "Staff" and "Staff" and code "54321"
+       Then  click on login button
        
    @admin
    Scenario:
        Given user Logged on to LMS Website
-       When admin enter valid username as "Admin" and password as "Admin" and code "12345"
-       Then click on login button
+       When admin enter valid "Admin" and "Admin" and code "12345"
+       Then  click on login button
 
 	@admin @user @staff
   Scenario Outline: Validating the Manage Batch Header
-    Given Batch_Admin/User/Staff Logged on to LMS website
+    Given Batch_Admin/User/Staff Logged on to LMS Website
     When Batch_Admin/User/Staff Clicks on Batch button
     Then Batch_Admin/User/Staff see header text as "Manage Batch"
 
 	@admin @user @staff
  	Scenario Outline: Validating the Manage Batch Footer
-    Given Batch_Admin/User/Staff Logged on to LMS website
+    Given Batch_Admin/User/Staff Logged on to LMS Website
     When Batch_Admin/User/Staff Clicks on Batch button
     Then Batch_Admin/User/Staff see Footer text as "In total there are 21 batches."
 
@@ -318,7 +318,7 @@ Feature: Batch
 #Delete Multiple Records Functionality
 	@admin @user @staff 
 	Scenario: Verify the state of Delete button on left hand side
-   Given Batch_Admin/User/Staff Logged on to LMS Website      
+   Given Batch_Admin/User/Staff Logged on to LMS Website
    When Batch_Admin/User/Staff is on Manage Batch page                
    Then Batch_Admin/User/Staff see the Delete button on the top left hand side as Disabled
 

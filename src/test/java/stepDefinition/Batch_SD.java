@@ -20,24 +20,9 @@ public class Batch_SD {
 	
 	@Given("Batch_Admin\\/User\\/Staff Logged on to LMS Website")
 	public void batch_admin_user_staff_logged_on_to_lms_website() {
-	    batch.verifyUserLoggedin();
+		batch.verifyUserLoggedin();
 	}
 	
-	@When("user enter valid username as {string} and password as {string}")
-	public void user_enter_valid_username_as_and_password_as(String uname, String pwd) {
-		batch.validloginUser(uname,pwd);
-	}
-
-	@When("staff enter valid username {string} and password {string} and code {string}")
-	public void staff_enter_valid_username_and_password_and_code(String uname, String pwd, String code) {
-		batch.validloginStaff(uname,pwd,code);
-	}
-	
-	@When("admin enter valid username as {string} and password as {string} and code {string}")
-	public void batch_admin_enter_valid_username_as_and_password_as_and_code(String uname, String pwd, String code) {
-		batch.validloginAdmin(uname,pwd,code);
-	}
-
 	@Given("Batch_Admin\\/User\\/Staff is on Manage Batch page")
 	public void batch_admin_user_staff_is_on_manage_batch_page() {
 		batch.verifyManageBatchPage();
