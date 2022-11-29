@@ -215,10 +215,8 @@ public class Attendance_POM {
 	public void clickEditButton() {
 		
 		Loggerload.info("User clicks on Edit Button");
-        if((Flag==1)||(Flag==2))
-		editButton.click();
-        else if(Flag==3)
-        	Loggerload.info("Denied Access");
+        editButton.click();
+       
    }  
 		
 	public void saveButton() {
@@ -250,10 +248,8 @@ public class Attendance_POM {
 	public void deleteButton() {
 		
 		Loggerload.info("User clicks on Delete Button");
-		if((Flag==1)||(Flag==2))
-			deleteButton.click();
-		else if(Flag==3)
-			Loggerload.info("Denied Access");
+		deleteButton.click();
+		
 	}
 	
 	public void deletepopup() {
